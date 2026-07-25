@@ -265,6 +265,20 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
 .hero__sub{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px;margin-top:clamp(28px,4vw,48px)}
 .hero__sub p{max-width:46ch;font-size:clamp(15px,1.4vw,18px);color:var(--text-dark);opacity:.92}
 .hero__cta{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ---- hero rhinestone sparkle — star glints anchored to the photo ---- */
+.hero__sparks{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.hero__sparks .spark{position:absolute;width:var(--s,15px);height:var(--s,15px);margin:calc(var(--s,15px)/-2) 0 0 calc(var(--s,15px)/-2);
+  color:rgba(255,248,226,.95);pointer-events:none;opacity:0;transform:scale(.2);mix-blend-mode:screen;
+  background:radial-gradient(circle,#fff 0%,rgba(255,250,232,.85) 9%,rgba(255,240,210,0) 26%);
+  animation:hero-tw var(--dur,2.6s) ease-in-out infinite;animation-delay:var(--d,0s);will-change:opacity,transform}
+.hero__sparks .spark::before,.hero__sparks .spark::after{content:"";position:absolute;left:50%;top:50%}
+.hero__sparks .spark::before{width:100%;height:1.4px;transform:translate(-50%,-50%);
+  background:linear-gradient(90deg,transparent,currentColor 42%,#fff 50%,currentColor 58%,transparent)}
+.hero__sparks .spark::after{height:100%;width:1.4px;transform:translate(-50%,-50%);
+  background:linear-gradient(180deg,transparent,currentColor 42%,#fff 50%,currentColor 58%,transparent)}
+@keyframes hero-tw{0%,100%{opacity:0;transform:scale(.2) rotate(0deg)}12%{opacity:1;transform:scale(1) rotate(12deg)}30%{opacity:0;transform:scale(.4) rotate(22deg)}}
+@media (prefers-reduced-motion:reduce){.hero__sparks .spark{animation:none;opacity:0}}
 .scroll-cue{
   position:absolute;left:var(--pad);bottom:clamp(20px,3vw,34px);z-index:2;
   font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted-dark);
@@ -664,6 +678,30 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
 <section class="hero">
   <div class="hero__bg">
     <img src="Hero.JPEG" alt="OoMuS editorial hero" style="width:100%;height:100%;object-fit:cover">
+  </div>
+  <div class="hero__sparks" aria-hidden="true">
+    <!-- маска (стразы) — координаты привязаны к фото -->
+    <span class="spark" data-fx=".60" data-fy=".10" style="--dur:2.6s;--d:0s;--s:16px"></span>
+    <span class="spark" data-fx=".68" data-fy=".08" style="--dur:2.9s;--d:.5s;--s:13px"></span>
+    <span class="spark" data-fx=".75" data-fy=".13" style="--dur:2.4s;--d:1.1s;--s:15px"></span>
+    <span class="spark" data-fx=".80" data-fy=".21" style="--dur:3.0s;--d:.3s;--s:12px"></span>
+    <span class="spark" data-fx=".64" data-fy=".19" style="--dur:2.7s;--d:1.6s;--s:14px"></span>
+    <span class="spark" data-fx=".72" data-fy=".27" style="--dur:2.5s;--d:.9s;--s:13px"></span>
+    <span class="spark" data-fx=".58" data-fy=".25" style="--dur:2.8s;--d:2.0s;--s:15px"></span>
+    <span class="spark" data-fx=".76" data-fy=".34" style="--dur:2.6s;--d:1.3s;--s:12px"></span>
+    <!-- световые лучи (слева, у больших слов) -->
+    <span class="spark" data-fx=".33" data-fy=".16" style="--dur:2.7s;--d:.4s;--s:13px"></span>
+    <span class="spark" data-fx=".30" data-fy=".28" style="--dur:2.5s;--d:1.3s;--s:14px"></span>
+    <span class="spark" data-fx=".37" data-fy=".36" style="--dur:2.9s;--d:.8s;--s:12px"></span>
+    <span class="spark" data-fx=".32" data-fy=".46" style="--dur:2.6s;--d:1.9s;--s:13px"></span>
+    <span class="spark" data-fx=".43" data-fy=".22" style="--dur:2.8s;--d:.1s;--s:14px"></span>
+    <span class="spark" data-fx=".40" data-fy=".44" style="--dur:2.4s;--d:1.5s;--s:12px"></span>
+    <!-- кофта (бисер) -->
+    <span class="spark" data-fx=".72" data-fy=".83" style="--dur:2.9s;--d:1.4s;--s:13px"></span>
+    <span class="spark" data-fx=".78" data-fy=".87" style="--dur:2.5s;--d:.7s;--s:14px"></span>
+    <span class="spark" data-fx=".70" data-fy=".91" style="--dur:2.8s;--d:2.1s;--s:12px"></span>
+    <span class="spark" data-fx=".82" data-fy=".89" style="--dur:2.6s;--d:1.0s;--s:13px"></span>
+    <span class="spark" data-fx=".76" data-fy=".95" style="--dur:2.7s;--d:1.7s;--s:13px"></span>
   </div>
   <div class="wrap hero__inner">
     <span class="eyebrow reveal in">AI Creative Studio — Fashion &amp; Beauty Campaigns</span>
@@ -1860,6 +1898,32 @@ function closeGuidePayment(){
     if(Math.abs(dx)>40) go(dx<0?1:-1);
     x0=null;
   },{passive:true});
+})();
+</script>
+
+<script>
+/* hero sparkles — anchor each glint to the actual photo, correcting for object-fit:cover crop */
+(function(){
+  var host=document.querySelector('.hero__sparks');
+  var img=document.querySelector('.hero__bg img');
+  if(!host||!img) return;
+  var sparks=[].slice.call(host.querySelectorAll('.spark'));
+  function place(){
+    var iw=img.naturalWidth||3072, ih=img.naturalHeight||1536;
+    var W=host.clientWidth, H=host.clientHeight;
+    if(!W||!H) return;
+    var scale=Math.max(W/iw, H/ih);
+    var rw=iw*scale, rh=ih*scale;
+    var ox=(W-rw)/2, oy=(H-rh)/2;
+    sparks.forEach(function(s){
+      var fx=parseFloat(s.getAttribute('data-fx')), fy=parseFloat(s.getAttribute('data-fy'));
+      s.style.left=(ox+fx*rw).toFixed(1)+'px';
+      s.style.top=(oy+fy*rh).toFixed(1)+'px';
+    });
+  }
+  if(img.complete) place(); else img.addEventListener('load',place);
+  window.addEventListener('resize',place);
+  window.addEventListener('orientationchange',place);
 })();
 </script>
 </body>
