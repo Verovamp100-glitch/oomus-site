@@ -431,6 +431,12 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
   padding:5px 11px;border:1px solid var(--line-dark);background:rgba(11,11,12,.4);pointer-events:none}
 .ba__label--before{left:14px}
 .ba__label--after{right:14px}
+
+/* ---- The Eye Behind OoMuS (founder) ---- */
+.eye-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,72px);align-items:center}
+.eye__photo{overflow:hidden}
+.eye__photo img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.eye__text p{font-family:var(--f-display);font-weight:300;font-size:clamp(20px,2.3vw,32px);line-height:1.5;color:var(--cream)}
 .work-card{position:relative;cursor:pointer;overflow:hidden}
 .work-card__img{aspect-ratio:4/5;overflow:hidden}
 .work-card__img img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease)}
@@ -637,6 +643,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
   .work-item--rev .work-item__media{order:0}
   .work-cards{grid-template-columns:1fr}
   .ba-grid{grid-template-columns:1fr}
+  .eye-grid{grid-template-columns:1fr}
   .case-intro{grid-template-columns:1fr;gap:28px}
   .case-diptych{grid-template-columns:1fr;gap:12px}
   .case-overlay__close{top:12px;right:12px}
@@ -698,7 +705,6 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       <a href="#services" class="nav-link">Services</a>
       <a href="#process" class="nav-link">Process</a>
       <a href="#faq" class="nav-link">FAQ</a>
-      <a href="#guides" class="nav-link">Guides</a>
       <a href="#contact" class="nav-cta">Start a project</a>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </nav>
@@ -711,7 +717,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
   <a href="#services">Services</a>
   <a href="#process">Process</a>
   <a href="#faq">FAQ</a>
-  <a href="#guides">Guides</a>
+  <a href="#eye-behind">The Eye Behind OoMuS</a>
   <a href="#contact">Contact</a>
   <span class="m-meta">AI Creative Studio — Fashion &amp; Beauty Campaigns</span>
 </nav>
@@ -1663,57 +1669,24 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
   </div>
 </section>
 
-<!-- ============================ GUIDES ============================ -->
-<section class="section" id="guides">
+<!-- ============================ THE EYE BEHIND OoMuS ============================ -->
+<section class="section" id="eye-behind">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">Resources</span>
-      <h2>AI Production Guides</h2>
+      <span class="eyebrow">About</span>
+      <h2>The Eye Behind OoMuS</h2>
     </div>
 
-    <div class="guides-grid">
-
-      <article class="guide-card reveal">
-        <div class="guide-card__cover">
-          <img src="face_extraction_cover.jpg" alt="The Face Extraction Method" loading="lazy">
-        </div>
-        <div class="guide-card__body">
-          <h3 class="guide-card__title">The Face Extraction Method</h3>
-          <span class="guide-card__sub">Turn Any AI Generation Into a Clean Professional Model Snap</span>
-          <p class="guide-card__desc">Professional workflow for building consistent AI models through Recraft + Nano Banana — from raw generation to editorial-ready face.</p>
-          <div class="guide-card__footer">
-            <span class="guide-card__price">$20</span>
-            <button class="guide-card__btn" onclick="openGuidePayment('guide-pay-face')">Get the Guide</button>
-          </div>
-        </div>
-      </article>
-
+    <div class="eye-grid">
+      <div class="eye__photo reveal">
+        <img src="Me/Me1.jpg" alt="Veronica Mus — founder of OoMuS" loading="lazy">
+      </div>
+      <div class="eye__text reveal" data-delay="1">
+        <p>I'm Veronica Mus. I founded OoMuS after years in Milan's fashion world - first as a model, then managing talent for a modeling agency. I've seen both sides: in front of the lens, and behind the scenes deciding what makes a campaign work. That same instinct now drives every AI campaign OoMuS creates!</p>
+      </div>
     </div>
   </div>
 </section>
-
-<!-- Guide Payment Overlay -->
-<div class="guide-overlay" id="guide-pay-face">
-  <div class="guide-overlay__box">
-    <button class="guide-overlay__close" onclick="closeGuidePayment()" aria-label="Close">&times;</button>
-    <h3>Get the Guide — $20</h3>
-    <p><strong style="color:var(--cream)">The Face Extraction Method</strong></p>
-    <p>Choose a payment method below, then email your confirmation to receive the guide.</p>
-
-    <div class="pay-method">
-      <strong>USDT (Tron / TRC-20)</strong>
-      <code>TGLFEufJJQeJ6rP4fS64G4563wddtiDoMC</code>
-    </div>
-
-    <div class="pay-method">
-      <strong>USDT (Ethereum / ERC-20)</strong>
-      <code>0xf55337D3e18faC92bd4e5E7052DeE5F8bff44d6f</code>
-    </div>
-
-    <p style="margin-top:24px">After payment, send confirmation to:<br><a href="mailto:oomustudio@proton.me" style="color:var(--champagne)">oomustudio@proton.me</a></p>
-    <p style="font-size:12px;opacity:.5">The guide will be delivered to your email within 24 hours.</p>
-  </div>
-</div>
 
 <!-- ============================ CONTACT / CTA ============================ -->
 <section class="section cta" id="contact">
