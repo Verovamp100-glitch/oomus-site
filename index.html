@@ -462,6 +462,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
 .case-diptych img,.case-diptych video{width:100%;height:100%;object-fit:cover;display:block}
 .case-full{padding:clamp(24px,4vw,60px) 0;border-bottom:1px solid var(--line-dark-soft)}
 .case-full img,.case-full video{width:100%;display:block}
+.case-full--vert{display:flex;justify-content:center}
+.case-full--vert video{width:min(440px,100%)}
 
 /* --- calculator --- */
 .calc{padding:clamp(48px,8vw,100px) 20px;display:flex;justify-content:center}
@@ -1187,6 +1189,20 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         </div>
       </article>
 
+      <!-- Card 09 — CRYONA -->
+      <article class="work-card reveal" data-delay="1" onclick="openCase('case-cryona')">
+        <div class="work-card__img">
+          <img src="Cryo/CHERO.jpg" alt="CRYONA" loading="lazy">
+        </div>
+        <div class="work-card__body">
+          <span class="work-card__no">Case IX</span>
+          <h3 style="margin-bottom:8px">CRYONA</h3>
+          <p style="font-family:var(--ff-display);font-weight:300;font-size:15px;color:var(--muted-dark);line-height:1.2;margin:0 0 16px">Cryo-Active Peptide Serum — Concept Skincare Campaign</p>
+          <div class="work-card__tags"><span>Skincare Campaign</span><span>Macro Texture</span><span>Product Visuals</span></div>
+          <span class="work-card__cta">View case &rarr;</span>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -1560,6 +1576,50 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
 
     <div class="case-full">
       <video src="Zoombie%20AD/Z13.mp4" loop muted playsinline preload="none"></video>
+    </div>
+
+  </div>
+</div>
+
+<!-- CASE OVERLAY — CRYONA -->
+<div class="case-overlay" id="case-cryona">
+  <button class="case-overlay__close" onclick="closeCase()" aria-label="Close">&times;</button>
+  <div class="case-overlay__inner">
+
+    <div class="case-intro">
+      <div>
+        <img src="Cryo/CHERO.jpg" alt="CRYONA — Cryo-Active Peptide Serum">
+      </div>
+      <div class="work-item__body">
+        <span class="work-item__no">Case IX</span>
+        <h3>CRYONA</h3>
+        <p style="font-family:var(--f-display);font-weight:300;font-size:clamp(17px,1.6vw,21px);color:var(--champagne);line-height:1.25;margin:-14px 0 22px">Cryo-Active Peptide Serum — Concept Skincare Campaign</p>
+        <div class="work-item__tags"><span>Skincare Campaign</span><span>Editorial Photography</span><span>Macro Texture</span><span>Product Visuals</span><span>Video</span></div>
+        <p>Concept skincare campaign for a fictional product line — full visual system from macro product shots to beauty close-ups, plus a short vertical video. Styling (metallic corset, liquid-glass jewelry) built to extend the product concept onto the model, not just sit beside it.</p>
+      </div>
+    </div>
+
+    <div class="case-full">
+      <img src="Cryo/C1.jpg" alt="CRYONA — campaign spread" loading="lazy">
+    </div>
+
+    <div class="case-diptych">
+      <img src="Cryo/C2.jpg" alt="CRYONA — campaign frame" loading="lazy">
+      <img src="Cryo/C3.jpg" alt="CRYONA — campaign frame" loading="lazy">
+    </div>
+
+    <div class="case-diptych">
+      <img src="Cryo/C4.jpg" alt="CRYONA — campaign frame" loading="lazy">
+      <img src="Cryo/C5.jpg" alt="CRYONA — campaign frame" loading="lazy">
+    </div>
+
+    <div class="case-diptych">
+      <img src="Cryo/C6.jpg" alt="CRYONA — campaign frame" loading="lazy">
+      <img src="Cryo/C7.jpg" alt="CRYONA — campaign frame" loading="lazy">
+    </div>
+
+    <div class="case-full case-full--vert">
+      <video src="Cryo/C8.mp4" loop muted playsinline preload="none"></video>
     </div>
 
   </div>
