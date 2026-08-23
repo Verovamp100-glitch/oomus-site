@@ -594,6 +594,13 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
 .field select option{background:var(--graphite-2);color:var(--text-dark)}
 .field textarea{resize:vertical;min-height:80px}
 .form .btn{margin-top:8px;align-self:flex-start}
+.field__err{font-size:11px;letter-spacing:.06em;color:#D98F86;min-height:0;opacity:0;transform:translateY(-4px);transition:opacity .25s var(--ease),transform .25s var(--ease)}
+.field.is-invalid .field__err{opacity:1;transform:none}
+.field.is-invalid input,.field.is-invalid textarea{border-bottom-color:#D98F86}
+.form__status{font-size:13px;line-height:1.5;color:var(--muted-dark);opacity:0;transform:translateY(-4px);transition:opacity .3s var(--ease),transform .3s var(--ease);margin-top:4px}
+.form__status.show{opacity:1;transform:none}
+.form__status.ok{color:var(--champagne)}
+.form__status.bad{color:#D98F86}
 
 /* ============================================================
    footer
@@ -757,7 +764,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
     <span class="eyebrow reveal in">AI Creative Studio — Fashion &amp; Beauty Campaigns</span>
     <h1 class="reveal in">Visual Worlds<br>for <em>Modern Brands.</em></h1>
     <div class="hero__sub">
-      <p class="reveal in" data-delay="1">OoMuS creates AI-native ultra-realistic photography, films and visual campaigns for fashion, beauty &amp; modern brands — editorial quality without traditional production.</p>
+      <p class="reveal in" data-delay="1">OoMuS creates ultra-realistic photography, films and visual campaigns for fashion, beauty &amp; modern brands — editorial quality without traditional production.</p>
       <div class="hero__cta reveal in" data-delay="2">
         <a href="#contact" class="btn btn--solid">Start a project <span class="arw">→</span></a>
         <a href="#work" class="btn btn--ghost">View work</a>
@@ -793,7 +800,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
 <section class="section" id="before-after">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">AI Retouch</span>
+      <span class="eyebrow">Retouch</span>
       <h2>Before / After</h2>
     </div>
     <div class="ba-grid">
@@ -821,7 +828,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
     <div class="section-head reveal">
       <span class="eyebrow">AI Models</span>
       <h2>A cast that doesn't book out.</h2>
-      <p class="lead" style="color:var(--text-light)">Exclusive AI faces, art-directed and ready to shoot — or a model built entirely around your brand.</p>
+      <p class="lead" style="color:var(--text-light)">Exclusive faces, art-directed and ready to shoot — or a model built entirely around your brand.</p>
     </div>
 
     <div class="models-grid">
@@ -833,7 +840,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <img class="gx" src="Selena/S3.jpg" alt="Selena" loading="lazy" hidden>
           <img class="gx" src="Selena/S4.jpg" alt="Selena" loading="lazy" hidden>1 / 4</span>
         </div>
-        <div class="model__bar"><span class="model__name">Selena</span><span class="model__id">AI Model 01</span></div>
+        <div class="model__bar"><span class="model__name">Selena</span><span class="model__id">Model 01</span></div>
         <dl class="model__meta">
           <div><dt>Age</dt><dd>25</dd></div>
           <div><dt>Height</dt><dd>178 cm</dd></div>
@@ -849,7 +856,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <img class="gx" src="Yuki/Y04.jpg" alt="Yuki" loading="lazy" hidden>
           <span class="model__count">1 / 4</span>
         </div>
-        <div class="model__bar"><span class="model__name">Yuki</span><span class="model__id">AI Model 02</span></div>
+        <div class="model__bar"><span class="model__name">Yuki</span><span class="model__id">Model 02</span></div>
         <dl class="model__meta">
           <div><dt>Age</dt><dd>22</dd></div>
           <div><dt>Height</dt><dd>175 cm</dd></div>
@@ -865,7 +872,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <img class="gx" src="Mina/M4.jpg" alt="Mina" loading="lazy" hidden>
           <span class="model__count">1 / 4</span>
         </div>
-        <div class="model__bar"><span class="model__name">Mina</span><span class="model__id">AI Model 03</span></div>
+        <div class="model__bar"><span class="model__name">Mina</span><span class="model__id">Model 03</span></div>
         <dl class="model__meta">
           <div><dt>Age</dt><dd>20</dd></div>
           <div><dt>Height</dt><dd>180 cm</dd></div>
@@ -881,7 +888,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <img class="gx" src="Kai%20%3A%20Korean%20%3A%20Pink%3A%20Brown/K4.jpg" alt="Kai" loading="lazy" hidden>
           <span class="model__count">1 / 4</span>
         </div>
-        <div class="model__bar"><span class="model__name">Kai</span><span class="model__id">AI Model 04</span></div>
+        <div class="model__bar"><span class="model__name">Kai</span><span class="model__id">Model 04</span></div>
         <dl class="model__meta">
           <div><dt>Age</dt><dd>23</dd></div>
           <div><dt>Height</dt><dd>181 cm</dd></div>
@@ -897,7 +904,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <img class="gx" src="Elli/Elli4.jpg" alt="Elli" loading="lazy" hidden>
           <span class="model__count">1 / 4</span>
         </div>
-        <div class="model__bar"><span class="model__name">Elli</span><span class="model__id">AI Model 05</span></div>
+        <div class="model__bar"><span class="model__name">Elli</span><span class="model__id">Model 05</span></div>
         <dl class="model__meta">
           <div><dt>Age</dt><dd>26</dd></div>
           <div><dt>Height</dt><dd>183 cm</dd></div>
@@ -913,7 +920,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <img class="gx" src="Roslanda/Ros4.jpg" alt="Roslanda" loading="lazy" hidden>
           <span class="model__count">1 / 4</span>
         </div>
-        <div class="model__bar"><span class="model__name">Roslanda</span><span class="model__id">AI Model 06</span></div>
+        <div class="model__bar"><span class="model__name">Roslanda</span><span class="model__id">Model 06</span></div>
         <dl class="model__meta">
           <div><dt>Age</dt><dd>22</dd></div>
           <div><dt>Height</dt><dd>179 cm</dd></div>
@@ -929,7 +936,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <img class="gx" src="Sv4.jpg" alt="Svan" loading="lazy" hidden>
           <span class="model__count">1 / 4</span>
         </div>
-        <div class="model__bar"><span class="model__name">Svan</span><span class="model__id">AI Model 07</span></div>
+        <div class="model__bar"><span class="model__name">Svan</span><span class="model__id">Model 07</span></div>
         <dl class="model__meta">
           <div><dt>Age</dt><dd>28</dd></div>
           <div><dt>Height</dt><dd>190 cm</dd></div>
@@ -940,17 +947,17 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       <!-- CUSTOM / PREMIUM — face carousel -->
       <article class="model model--custom reveal" data-delay="3">
         <div class="model__img" id="customCarousel">
-          <img class="carousel-img active" src="Models%20for%20site/M01.jpg" alt="Custom AI face" loading="lazy">
-          <img class="carousel-img" src="Models%20for%20site/M02.jpg" alt="Custom AI face" loading="lazy">
-          <img class="carousel-img" src="Models%20for%20site/M03.jpg" alt="Custom AI face" loading="lazy">
-          <img class="carousel-img" src="Models%20for%20site/M04.jpg" alt="Custom AI face" loading="lazy">
-          <img class="carousel-img" src="Models%20for%20site/M05.jpg" alt="Custom AI face" loading="lazy">
-          <img class="carousel-img" src="Models%20for%20site/M06.jpg" alt="Custom AI face" loading="lazy">
-          <img class="carousel-img" src="Models%20for%20site/M07.jpg" alt="Custom AI face" loading="lazy">
-          <img class="carousel-img" src="Models%20for%20site/M08.jpg" alt="Custom AI face" loading="lazy">
+          <img class="carousel-img active" src="Models%20for%20site/M01.jpg" alt="Custom face" loading="lazy">
+          <img class="carousel-img" src="Models%20for%20site/M02.jpg" alt="Custom face" loading="lazy">
+          <img class="carousel-img" src="Models%20for%20site/M03.jpg" alt="Custom face" loading="lazy">
+          <img class="carousel-img" src="Models%20for%20site/M04.jpg" alt="Custom face" loading="lazy">
+          <img class="carousel-img" src="Models%20for%20site/M05.jpg" alt="Custom face" loading="lazy">
+          <img class="carousel-img" src="Models%20for%20site/M06.jpg" alt="Custom face" loading="lazy">
+          <img class="carousel-img" src="Models%20for%20site/M07.jpg" alt="Custom face" loading="lazy">
+          <img class="carousel-img" src="Models%20for%20site/M08.jpg" alt="Custom face" loading="lazy">
           <div class="cc">
             <span class="tag">Custom</span>
-            <h3>Bespoke AI Model</h3>
+            <h3>Bespoke Model</h3>
             <p>Built for your brand</p>
           </div>
         </div>
@@ -981,7 +988,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       <div class="step reveal" data-delay="1">
         <span class="step__no">II</span>
         <h3>Model &amp; concept</h3>
-        <p>Choose an existing face or commission a custom AI model, then lock the concept and shot list.</p>
+        <p>Choose an existing face or commission a custom model, then lock the concept and shot list.</p>
       </div>
       <div class="step reveal" data-delay="2">
         <span class="step__no">III</span>
@@ -1011,16 +1018,16 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <div class="svc__text">
 
           <h3>Digital Photography</h3>
-          <p>AI-native editorial, lookbook and product imagery — studio-quality stills without a studio.</p>
+          <p>Editorial, lookbook and product imagery — studio-quality stills without a studio.</p>
         </div>
       </div>
 
       <div class="svc svc--rev reveal">
-        <div class="svc__img"><img src="Serv/AI%20Video.jpg" alt="AI Video" loading="lazy"></div>
+        <div class="svc__img"><img src="Serv/AI%20Video.jpg" alt="Motion &amp; Film" loading="lazy"></div>
         <div class="svc__text">
 
-          <h3>AI Video</h3>
-          <p>Motion campaigns, film and social-first reels — AI-generated, creatively directed.</p>
+          <h3>Motion &amp; Film</h3>
+          <p>Motion campaigns, film and social-first reels — generated and creatively directed.</p>
         </div>
       </div>
 
@@ -1082,7 +1089,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <div class="work-card__body">
           <span class="work-card__no">Case I</span>
           <h3>Italian Summer</h3>
-          <div class="work-card__tags"><span>Brand Campaign</span><span>AI Photography</span><span>Animation</span></div>
+          <div class="work-card__tags"><span>Brand Campaign</span><span>Editorial Photography</span><span>Animation</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
       </article>
@@ -1095,7 +1102,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <div class="work-card__body">
           <span class="work-card__no">Case II</span>
           <h3>Lotteria</h3>
-          <div class="work-card__tags"><span>Brand Campaign</span><span>Food Campaign</span><span>AI Photography</span><span>Editorial</span><span>Video</span></div>
+          <div class="work-card__tags"><span>Brand Campaign</span><span>Food Campaign</span><span>Editorial Photography</span><span>Editorial</span><span>Video</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
       </article>
@@ -1108,7 +1115,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <div class="work-card__body">
           <span class="work-card__no">Case III</span>
           <h3>The World Is Your Studio</h3>
-          <div class="work-card__tags"><span>AI Photography</span><span>Editorial</span><span>Fashion</span><span>Lookbook</span></div>
+          <div class="work-card__tags"><span>Editorial Photography</span><span>Editorial</span><span>Fashion</span><span>Lookbook</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
       </article>
@@ -1121,7 +1128,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <div class="work-card__body">
           <span class="work-card__no">Case IV</span>
           <h3>YSL Beauty — Crash Heart Cream</h3>
-          <div class="work-card__tags"><span>Beauty Campaign</span><span>AI Photography</span><span>Product Visuals</span><span>Motion</span></div>
+          <div class="work-card__tags"><span>Beauty Campaign</span><span>Editorial Photography</span><span>Product Visuals</span><span>Motion</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
       </article>
@@ -1134,7 +1141,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <div class="work-card__body">
           <span class="work-card__no">Case V</span>
           <h3>espressOh</h3>
-          <div class="work-card__tags"><span>Skincare Campaign</span><span>AI Photography</span><span>UGC</span><span>Social Content</span><span>Product Visuals</span></div>
+          <div class="work-card__tags"><span>Skincare Campaign</span><span>Editorial Photography</span><span>UGC</span><span>Social Content</span><span>Product Visuals</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
       </article>
@@ -1147,7 +1154,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <div class="work-card__body">
           <span class="work-card__no">Case VI</span>
           <h3>Adora Swim</h3>
-          <div class="work-card__tags"><span>Swimwear Campaign</span><span>AI Photography</span><span>Editorial</span><span>Video</span></div>
+          <div class="work-card__tags"><span>Swimwear Campaign</span><span>Editorial Photography</span><span>Editorial</span><span>Video</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
       </article>
@@ -1161,7 +1168,21 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <span class="work-card__no">Case VII</span>
           <h3 style="margin-bottom:8px">HALO</h3>
           <p style="font-family:var(--ff-display);font-weight:300;font-size:15px;color:var(--muted-dark);line-height:1.2;margin:0 0 16px">Brand From Scratch. Zero Shoot Days.</p>
-          <div class="work-card__tags"><span>Brand Campaign</span><span>AI Photography</span><span>Packaging Design</span><span>Product Design</span></div>
+          <div class="work-card__tags"><span>Brand Campaign</span><span>Editorial Photography</span><span>Packaging Design</span><span>Product Design</span></div>
+          <span class="work-card__cta">View case &rarr;</span>
+        </div>
+      </article>
+
+      <!-- Card 08 — UNDEAD COUTURE -->
+      <article class="work-card reveal" onclick="openCase('case-undead')">
+        <div class="work-card__img">
+          <img src="Zoombie%20AD/Z5.jpg" alt="UNDEAD COUTURE" loading="lazy">
+        </div>
+        <div class="work-card__body">
+          <span class="work-card__no">Case VIII</span>
+          <h3 style="margin-bottom:8px">UNDEAD COUTURE</h3>
+          <p style="font-family:var(--ff-display);font-weight:300;font-size:15px;color:var(--muted-dark);line-height:1.2;margin:0 0 16px">Six Characters. Six Ruined Cities. One Collection That Refuses To Die.</p>
+          <div class="work-card__tags"><span>Fashion Editorial</span><span>Editorial Photography</span><span>Conceptual</span><span>Video</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
       </article>
@@ -1182,7 +1203,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       <div class="work-item__body">
         <span class="work-item__no">Case I</span>
         <h3>Italian Summer</h3>
-        <div class="work-item__tags"><span>Brand Campaign</span><span>AI Photography</span><span>Product Visuals</span><span>Animation</span></div>
+        <div class="work-item__tags"><span>Brand Campaign</span><span>Editorial Photography</span><span>Product Visuals</span><span>Animation</span></div>
         <p>Concept spec campaign for D&amp;G — parfume gel stick duo and real D&amp;G swimwear collection 2026 integrated into one Mediterranean story. Two scents, two muses, yacht decks and majolica staircases to Sicilian fruit markets. Full AI production with real product placement: photography, product visuals, and animated diptych series. Every image generated, directed, and post-produced in-house.</p>
       </div>
     </div>
@@ -1222,7 +1243,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       <div class="work-item__body">
         <span class="work-item__no">Case II</span>
         <h3>Lotteria — Fast Food, Haute Couture</h3>
-        <div class="work-item__tags"><span>Brand Campaign</span><span>Food Campaign</span><span>AI Photography</span><span>Editorial</span><span>OOH</span><span>Video</span></div>
+        <div class="work-item__tags"><span>Brand Campaign</span><span>Food Campaign</span><span>Editorial Photography</span><span>Editorial</span><span>OOH</span><span>Video</span></div>
         <p>Spec campaign for Lotteria — the iconic Korean fast food chain reimagined through a high fashion lens. One model, one restaurant, one story: from the first bite to the city streets. Full AI production — editorial photography, dynamic product visuals, OOH placements, and campaign video. Every image generated, directed, and post-produced in-house.</p>
       </div>
     </div>
@@ -1280,7 +1301,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       <div class="work-item__body">
         <span class="work-item__no">Case III</span>
         <h3>The World Is Your Studio</h3>
-        <div class="work-item__tags"><span>AI Photography</span><span>Editorial</span><span>Fashion</span><span>Lookbook</span></div>
+        <div class="work-item__tags"><span>Editorial Photography</span><span>Editorial</span><span>Fashion</span><span>Lookbook</span></div>
         <p>AI-generated fashion editorial. Five models, five looks — placed across six locations worldwide. No flights. No crew. No studio. Paris · Japan · Safari · Bora Bora · Greece · Area 51</p>
       </div>
     </div>
@@ -1325,7 +1346,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       <div class="work-item__body">
         <span class="work-item__no">Case IV</span>
         <h3>YSL Beauty — Crash Heart Cream</h3>
-        <div class="work-item__tags"><span>Beauty Campaign</span><span>AI Photography</span><span>Product Visuals</span><span>Motion</span></div>
+        <div class="work-item__tags"><span>Beauty Campaign</span><span>Editorial Photography</span><span>Product Visuals</span><span>Motion</span></div>
         <p>Editorial campaign concept — models, product hero shots, motion content.</p>
         <p style="font-size:11px;opacity:.35;margin-top:16px">Concept campaign. Not affiliated with YSL Beauty.</p>
       </div>
@@ -1380,7 +1401,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       <div class="work-item__body">
         <span class="work-item__no">Case V</span>
         <h3>espressOh — Wake Up Clean</h3>
-        <div class="work-item__tags"><span>Skincare Campaign</span><span>AI Photography</span><span>UGC</span><span>Social Content</span><span>Product Visuals</span></div>
+        <div class="work-item__tags"><span>Skincare Campaign</span><span>Editorial Photography</span><span>UGC</span><span>Social Content</span><span>Product Visuals</span></div>
         <p>Spec UGC campaign for espressOh, the Italian clean-beauty label built around the ritual of a morning espresso. A single model, a pink-tiled bathroom, one cleansing gel — real skin, real routine, no studio gloss, in step with the brand's own social-first, no-campaign identity. Product beauty shots and a social-grid close round out the story.</p>
       </div>
     </div>
@@ -1432,7 +1453,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       <div class="work-item__body">
         <span class="work-item__no">Case VI</span>
         <h3>Adora Swim — Old Walls, New Story</h3>
-        <div class="work-item__tags"><span>Swimwear Campaign</span><span>AI Photography</span><span>Editorial</span><span>Video</span></div>
+        <div class="work-item__tags"><span>Swimwear Campaign</span><span>Editorial Photography</span><span>Editorial</span><span>Video</span></div>
         <p>Spec campaign for Adora Swim — sculptural swimwear framed against Moroccan architecture. Zellige tilework, terracotta arches and the Agafay desert as a single continuous story: old walls, new story. Full AI production — editorial photography, campaign video, and post-production. Every frame generated, directed and finished in-house.</p>
       </div>
     </div>
@@ -1489,6 +1510,61 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
   </div>
 </div>
 
+<!-- CASE OVERLAY — UNDEAD COUTURE -->
+<div class="case-overlay" id="case-undead">
+  <button class="case-overlay__close" onclick="closeCase()" aria-label="Close">&times;</button>
+  <div class="case-overlay__inner">
+
+    <div class="case-intro">
+      <div>
+        <img src="Zoombie%20AD/ZHERO.JPEG" alt="UNDEAD COUTURE">
+      </div>
+      <div class="work-item__body">
+        <span class="work-item__no">Case VIII</span>
+        <h3>UNDEAD COUTURE</h3>
+        <div class="work-item__tags"><span>Fashion Editorial</span><span>Editorial Photography</span><span>Conceptual</span><span>Video</span></div>
+        <p>Ann Demeulemeester's collections have always lived close to decay — draped fabric, undone seams, a darkness that reads as beauty rather than threat. It felt like the natural next step to push that language further: into a full apocalypse, where the clothing survives even as everything around it doesn't. Six looks, six collapsed cities, one closing film.</p>
+        <p style="font-size:11px;opacity:.35;margin-top:16px">Concept campaign. Not affiliated with Ann Demeulemeester.</p>
+      </div>
+    </div>
+
+    <div class="case-diptych">
+      <img src="Zoombie%20AD/Z1.jpg" alt="UNDEAD COUTURE — look 1" loading="lazy">
+      <img src="Zoombie%20AD/Z2.jpg" alt="UNDEAD COUTURE — look 1" loading="lazy">
+    </div>
+
+    <div class="case-diptych">
+      <img src="Zoombie%20AD/Z3.jpg" alt="UNDEAD COUTURE — look 2" loading="lazy">
+      <img src="Zoombie%20AD/Z4.jpg" alt="UNDEAD COUTURE — look 2" loading="lazy">
+    </div>
+
+    <div class="case-diptych">
+      <img src="Zoombie%20AD/Z5.jpg" alt="UNDEAD COUTURE — look 3" loading="lazy">
+      <img src="Zoombie%20AD/Z6.jpg" alt="UNDEAD COUTURE — look 3" loading="lazy">
+    </div>
+
+    <div class="case-diptych">
+      <img src="Zoombie%20AD/Z7.jpg" alt="UNDEAD COUTURE — look 4" loading="lazy">
+      <img src="Zoombie%20AD/Z8.jpg" alt="UNDEAD COUTURE — look 4" loading="lazy">
+    </div>
+
+    <div class="case-diptych">
+      <img src="Zoombie%20AD/Z9.jpg" alt="UNDEAD COUTURE — look 5" loading="lazy">
+      <img src="Zoombie%20AD/Z10.jpg" alt="UNDEAD COUTURE — look 5" loading="lazy">
+    </div>
+
+    <div class="case-diptych">
+      <img src="Zoombie%20AD/Z11.jpg" alt="UNDEAD COUTURE — look 6" loading="lazy">
+      <img src="Zoombie%20AD/Z12.jpg" alt="UNDEAD COUTURE — look 6" loading="lazy">
+    </div>
+
+    <div class="case-full">
+      <video src="Zoombie%20AD/Z13.mp4" loop muted playsinline preload="none"></video>
+    </div>
+
+  </div>
+</div>
+
 <!-- CASE OVERLAY — HALO -->
 <div class="case-overlay" id="case-halo">
   <button class="case-overlay__close" onclick="closeCase()" aria-label="Close">&times;</button>
@@ -1502,7 +1578,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <span class="work-item__no">Case VII</span>
         <h3 style="margin-bottom:12px">HALO</h3>
         <p style="font-family:var(--ff-display);font-weight:300;font-size:clamp(20px,2.4vw,32px);color:var(--muted-dark);line-height:1.15;margin:0 0 40px">Brand From Scratch. Zero Shoot Days.</p>
-        <div class="work-item__tags"><span>Brand Campaign</span><span>AI Photography</span><span>Packaging Design</span><span>Product Design</span></div>
+        <div class="work-item__tags"><span>Brand Campaign</span><span>Editorial Photography</span><span>Packaging Design</span><span>Product Design</span></div>
         <p>HALO is a conceptual wellness brand designed from the ground up — naming, visual identity, packaging, and a full commercial campaign with an AI model, down to merch and a branded vending machine. Every asset, from product renders to lifestyle shots, generated entirely with AI.</p>
       </div>
     </div>
@@ -1554,9 +1630,9 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
 <section class="section calc" id="calculator">
   <div class="calc__box">
     <div class="calc__head">
-      <span class="eyebrow">OoMuS AI Creative Studio</span>
+      <span class="eyebrow">OoMuS Creative Studio</span>
       <h2>How Much Could AI<br>Save Your Brand?</h2>
-      <p>Compare your current content production costs<br>with AI-powered creative</p>
+      <p>Compare your current content production costs<br>with OoMuS</p>
     </div>
 
     <div class="calc__card" id="calcForm">
@@ -1607,11 +1683,11 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <div class="calc__detail-row"><span>Shoots per year</span><span id="detShoots">0</span></div>
         <div class="calc__detail-row"><span>Total visuals/year</span><span id="detTotal">0</span></div>
       </div>
-      <a class="calc__cta-btn" href="mailto:oomustudio@proton.me?subject=AI%20Content%20Inquiry">Discuss Your Project</a>
+      <a class="calc__cta-btn" href="mailto:oomustudio@proton.me?subject=Project%20Inquiry">Discuss Your Project</a>
       <button class="calc__reset" id="calcReset">Recalculate</button>
     </div>
 
-    <p class="calc__note">*Estimates based on average AI editorial production costs.<br>Final pricing depends on project scope and complexity.</p>
+    <p class="calc__note">*Estimates based on average editorial production costs.<br>Final pricing depends on project scope and complexity.</p>
   </div>
 </section>
 
@@ -1647,7 +1723,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       </div>
       <div class="faq">
         <button class="faq__q" aria-expanded="false"><h3>Who owns the imagery?</h3><span class="faq__ic"></span></button>
-        <div class="faq__a"><div class="faq__a-inner"><p>You do. Every deliverable comes with full commercial usage rights for your brand. Custom AI models are produced exclusively for you and aren't reused for anyone else.</p></div></div>
+        <div class="faq__a"><div class="faq__a-inner"><p>You do. Every deliverable comes with full commercial usage rights for your brand. Custom models are produced exclusively for you and aren't reused for anyone else.</p></div></div>
       </div>
       <div class="faq">
         <button class="faq__q" aria-expanded="false"><h3>How long does a campaign take?</h3><span class="faq__ic"></span></button>
@@ -1682,7 +1758,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <img src="Me/Me1.jpg" alt="Veronica Mus — founder of OoMuS" loading="lazy">
       </div>
       <div class="eye__text reveal" data-delay="1">
-        <p>I'm Veronica Mus. I founded OoMuS after years in Milan's fashion world - first as a model, then managing talent for a modeling agency. I've seen both sides: in front of the lens, and behind the scenes deciding what makes a campaign work. That same instinct now drives every AI campaign OoMuS creates!</p>
+        <p>I'm Veronica Mus. I founded OoMuS after years in Milan's fashion world - first as a model, then managing talent for a modeling agency. I've seen both sides: in front of the lens, and behind the scenes deciding what makes a campaign work. That same instinct now drives every campaign OoMuS creates!</p>
       </div>
     </div>
   </div>
@@ -1698,13 +1774,15 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <div class="cta__contact">
           <a href="mailto:oomustudio@proton.me"><span class="k">Email</span><span class="v">oomustudio@proton.me</span></a>
           <a href="https://instagram.com/oomus_creative.studio_" target="_blank" rel="noopener"><span class="k">Instagram</span><span class="v">@oomus_creative.studio_</span></a>
+          <a href="https://www.behance.net/oomuscreativ" target="_blank" rel="noopener"><span class="k">Behance</span><span class="v">behance.net/oomuscreativ</span></a>
+          <a href="https://www.linkedin.com/in/veranika-malodziy-779748424" target="_blank" rel="noopener"><span class="k">LinkedIn</span><span class="v">Veranika Malodziy</span></a>
         </div>
       </div>
       <div class="reveal" data-delay="1">
         <form class="form" id="briefForm" novalidate>
-          <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" placeholder="Your name" required></div>
+          <div class="field" data-field><label for="f-name">Name</label><input id="f-name" name="name" type="text" placeholder="Your name" required aria-describedby="e-name"><span class="field__err" id="e-name"></span></div>
           <div class="field"><label for="f-brand">Brand</label><input id="f-brand" name="brand" type="text" placeholder="Brand / company"></div>
-          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" placeholder="you@brand.com" required></div>
+          <div class="field" data-field><label for="f-email">Email</label><input id="f-email" name="email" type="email" placeholder="you@brand.com" required aria-describedby="e-email"><span class="field__err" id="e-email"></span></div>
           <div class="field"><label for="f-service">Interested in</label>
             <select id="f-service" name="service">
               <option>Brand Campaign</option>
@@ -1715,8 +1793,9 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
               <option>Key Visuals</option>
             </select>
           </div>
-          <div class="field"><label for="f-msg">Brief</label><textarea id="f-msg" name="message" placeholder="Tell us about the project" rows="3"></textarea></div>
+          <div class="field" data-field><label for="f-msg">Brief</label><textarea id="f-msg" name="message" placeholder="Tell us about the project" rows="3" required aria-describedby="e-msg"></textarea><span class="field__err" id="e-msg"></span></div>
           <button type="submit" class="btn btn--solid">Send brief <span class="arw">→</span></button>
+          <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
@@ -1745,6 +1824,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <h4>Connect</h4>
         <a href="mailto:oomustudio@proton.me">oomustudio@proton.me</a>
         <a href="https://instagram.com/oomus_creative.studio_" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.behance.net/oomuscreativ" target="_blank" rel="noopener">Behance</a>
+        <a href="https://www.linkedin.com/in/veranika-malodziy-779748424" target="_blank" rel="noopener">LinkedIn</a>
         <a href="#contact">Start a project</a>
       </div>
     </div>
@@ -1797,15 +1878,64 @@ const io=new IntersectionObserver((entries)=>{
 document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
 
 /* contact form -> compose email (no backend) */
-document.getElementById('briefForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const f=e.target;
-  const subject=encodeURIComponent('New project brief — '+(f.brand.value||f.name.value||'OoMuS'));
-  const body=encodeURIComponent(
-    `Name: ${f.name.value}\nBrand: ${f.brand.value}\nEmail: ${f.email.value}\nInterested in: ${f.service.value}\n\n${f.message.value}`
-  );
-  window.location.href=`mailto:oomustudio@proton.me?subject=${subject}&body=${body}`;
-});
+(function(){
+  const form=document.getElementById('briefForm');
+  if(!form) return;
+  const status=document.getElementById('formStatus');
+  const EMAIL=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  const rules={
+    name:v=>v.trim().length>=2?'':'Please enter your name.',
+    email:v=>!v.trim()?'Please enter your email.':(EMAIL.test(v.trim())?'':'That email address looks incomplete.'),
+    message:v=>v.trim().length>=10?'':'Tell us a little about the project — a sentence is enough.'
+  };
+
+  function setError(el,msg){
+    const wrap=el.closest('[data-field]');
+    const out=wrap&&wrap.querySelector('.field__err');
+    if(!wrap||!out) return;
+    wrap.classList.toggle('is-invalid',!!msg);
+    el.setAttribute('aria-invalid',msg?'true':'false');
+    out.textContent=msg;
+  }
+  function check(el){
+    const r=rules[el.name];
+    if(!r) return true;
+    const msg=r(el.value);
+    setError(el,msg);
+    return !msg;
+  }
+  function say(text,kind){
+    if(!status) return;
+    status.textContent=text;
+    status.className='form__status show'+(kind?' '+kind:'');
+  }
+
+  Object.keys(rules).forEach(n=>{
+    const el=form.elements[n];
+    if(!el) return;
+    el.addEventListener('blur',()=>check(el));
+    el.addEventListener('input',()=>{ if(el.closest('[data-field]').classList.contains('is-invalid')) check(el); });
+  });
+
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const fields=Object.keys(rules).map(n=>form.elements[n]).filter(Boolean);
+    const bad=fields.filter(el=>!check(el));
+    if(bad.length){
+      say(bad.length===1?'One field still needs your attention.':'A few fields still need your attention.','bad');
+      bad[0].focus();
+      return;
+    }
+    const f=form;
+    const subject=encodeURIComponent('New project brief — '+(f.brand.value||f.name.value||'OoMuS'));
+    const body=encodeURIComponent(
+      `Name: ${f.name.value}\nBrand: ${f.brand.value}\nEmail: ${f.email.value}\nInterested in: ${f.service.value}\n\n${f.message.value}`
+    );
+    say('Opening your mail app with the brief ready to send. If nothing happens, write to oomustudio@proton.me.','ok');
+    window.location.href=`mailto:oomustudio@proton.me?subject=${subject}&body=${body}`;
+  });
+})();
 
 /* custom card — face carousel */
 (function(){
