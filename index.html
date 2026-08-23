@@ -462,8 +462,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
 .case-diptych img,.case-diptych video{width:100%;height:100%;object-fit:cover;display:block}
 .case-full{padding:clamp(24px,4vw,60px) 0;border-bottom:1px solid var(--line-dark-soft)}
 .case-full img,.case-full video{width:100%;display:block}
-.case-full--vert{display:flex;justify-content:center}
-.case-full--vert video{width:min(440px,100%)}
+/* video never exceeds the screen — centred, uncropped, same rule in every case */
+.case-full video{width:auto;max-width:100%;max-height:72vh;margin-inline:auto;object-fit:contain}
 
 /* --- calculator --- */
 .calc{padding:clamp(48px,8vw,100px) 20px;display:flex;justify-content:center}
@@ -538,6 +538,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
 .work-item__no{font-size:12px;letter-spacing:.3em;color:var(--champagne);margin-bottom:24px;display:block}
 .work-item h3{font-size:clamp(38px,5vw,68px);color:var(--text-dark);line-height:1.05;margin-bottom:28px}
 .work-item__body h3{margin-bottom:40px}
+/* case-intro titles never matched .work-item h3 — they rendered at body size */
+.case-intro h3,.work-item__body h3{font-family:var(--f-display);font-weight:300;font-size:clamp(26px,2.4vw,32px);line-height:1.08;color:var(--text-dark)}
 .work-item__tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px;margin-top:4px}
 .work-item__tags span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-dark);border:1px solid var(--line-dark);padding:6px 14px}
 .work-item p{max-width:42ch}
@@ -1090,7 +1092,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         </div>
         <div class="work-card__body">
           <span class="work-card__no">Case I</span>
-          <h3>Italian Summer</h3>
+          <h3 style="margin-bottom:8px">Italian Summer</h3>
+          <p style="font-family:var(--ff-display);font-weight:300;font-size:15px;color:var(--muted-dark);line-height:1.2;margin:0 0 16px">Two Scents. Two Muses. One Sicilian Summer.</p>
           <div class="work-card__tags"><span>Brand Campaign</span><span>Editorial Photography</span><span>Animation</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
@@ -1103,7 +1106,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         </div>
         <div class="work-card__body">
           <span class="work-card__no">Case II</span>
-          <h3>Lotteria</h3>
+          <h3 style="margin-bottom:8px">Lotteria</h3>
+          <p style="font-family:var(--ff-display);font-weight:300;font-size:15px;color:var(--muted-dark);line-height:1.2;margin:0 0 16px">Fast Food, Haute Couture.</p>
           <div class="work-card__tags"><span>Brand Campaign</span><span>Food Campaign</span><span>Editorial Photography</span><span>Editorial</span><span>Video</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
@@ -1116,7 +1120,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         </div>
         <div class="work-card__body">
           <span class="work-card__no">Case III</span>
-          <h3>The World Is Your Studio</h3>
+          <h3 style="margin-bottom:8px">The World Is Your Studio</h3>
+          <p style="font-family:var(--ff-display);font-weight:300;font-size:15px;color:var(--muted-dark);line-height:1.2;margin:0 0 16px">Five Models. Six Locations. No Flights, No Crew, No Studio.</p>
           <div class="work-card__tags"><span>Editorial Photography</span><span>Editorial</span><span>Fashion</span><span>Lookbook</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
@@ -1129,7 +1134,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         </div>
         <div class="work-card__body">
           <span class="work-card__no">Case IV</span>
-          <h3>YSL Beauty — Crash Heart Cream</h3>
+          <h3 style="margin-bottom:8px">YSL Beauty</h3>
+          <p style="font-family:var(--ff-display);font-weight:300;font-size:15px;color:var(--muted-dark);line-height:1.2;margin:0 0 16px">Crash Heart Cream — Beauty Campaign Concept.</p>
           <div class="work-card__tags"><span>Beauty Campaign</span><span>Editorial Photography</span><span>Product Visuals</span><span>Motion</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
@@ -1142,7 +1148,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         </div>
         <div class="work-card__body">
           <span class="work-card__no">Case V</span>
-          <h3>espressOh</h3>
+          <h3 style="margin-bottom:8px">espressOh</h3>
+          <p style="font-family:var(--ff-display);font-weight:300;font-size:15px;color:var(--muted-dark);line-height:1.2;margin:0 0 16px">Wake Up Clean.</p>
           <div class="work-card__tags"><span>Skincare Campaign</span><span>Editorial Photography</span><span>UGC</span><span>Social Content</span><span>Product Visuals</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
@@ -1155,7 +1162,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         </div>
         <div class="work-card__body">
           <span class="work-card__no">Case VI</span>
-          <h3>Adora Swim</h3>
+          <h3 style="margin-bottom:8px">Adora Swim</h3>
+          <p style="font-family:var(--ff-display);font-weight:300;font-size:15px;color:var(--muted-dark);line-height:1.2;margin:0 0 16px">Old Walls, New Story.</p>
           <div class="work-card__tags"><span>Swimwear Campaign</span><span>Editorial Photography</span><span>Editorial</span><span>Video</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
@@ -1168,7 +1176,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         </div>
         <div class="work-card__body">
           <span class="work-card__no">Case VII</span>
-          <h3 style="margin-bottom:8px">HALO</h3>
+          <h3 style="margin-bottom:8px">Halo</h3>
           <p style="font-family:var(--ff-display);font-weight:300;font-size:15px;color:var(--muted-dark);line-height:1.2;margin:0 0 16px">Brand From Scratch. Zero Shoot Days.</p>
           <div class="work-card__tags"><span>Brand Campaign</span><span>Editorial Photography</span><span>Packaging Design</span><span>Product Design</span></div>
           <span class="work-card__cta">View case &rarr;</span>
@@ -1182,7 +1190,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         </div>
         <div class="work-card__body">
           <span class="work-card__no">Case VIII</span>
-          <h3 style="margin-bottom:8px">UNDEAD COUTURE</h3>
+          <h3 style="margin-bottom:8px">Undead Couture</h3>
           <p style="font-family:var(--ff-display);font-weight:300;font-size:15px;color:var(--muted-dark);line-height:1.2;margin:0 0 16px">Six Characters. Six Ruined Cities. One Collection That Refuses To Die.</p>
           <div class="work-card__tags"><span>Fashion Editorial</span><span>Editorial Photography</span><span>Conceptual</span><span>Video</span></div>
           <span class="work-card__cta">View case &rarr;</span>
@@ -1196,7 +1204,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         </div>
         <div class="work-card__body">
           <span class="work-card__no">Case IX</span>
-          <h3 style="margin-bottom:8px">CRYONA</h3>
+          <h3 style="margin-bottom:8px">Cryona</h3>
           <p style="font-family:var(--ff-display);font-weight:300;font-size:15px;color:var(--muted-dark);line-height:1.2;margin:0 0 16px">Cryo-Active Peptide Serum — Concept Skincare Campaign</p>
           <div class="work-card__tags"><span>Skincare Campaign</span><span>Macro Texture</span><span>Product Visuals</span></div>
           <span class="work-card__cta">View case &rarr;</span>
@@ -1218,7 +1226,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       </div>
       <div class="work-item__body">
         <span class="work-item__no">Case I</span>
-        <h3>Italian Summer</h3>
+        <h3 style="margin-bottom:12px">Italian Summer</h3>
+        <p style="font-family:var(--ff-display);font-weight:300;font-size:clamp(15px,1.3vw,17px);color:var(--muted-dark);line-height:1.35;margin:0 0 30px">Two Scents. Two Muses. One Sicilian Summer.</p>
         <div class="work-item__tags"><span>Brand Campaign</span><span>Editorial Photography</span><span>Product Visuals</span><span>Animation</span></div>
         <p>Concept spec campaign for D&amp;G — parfume gel stick duo and real D&amp;G swimwear collection 2026 integrated into one Mediterranean story. Two scents, two muses, yacht decks and majolica staircases to Sicilian fruit markets. Full AI production with real product placement: photography, product visuals, and animated diptych series. Every image generated, directed, and post-produced in-house.</p>
       </div>
@@ -1258,7 +1267,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       </div>
       <div class="work-item__body">
         <span class="work-item__no">Case II</span>
-        <h3>Lotteria — Fast Food, Haute Couture</h3>
+        <h3 style="margin-bottom:12px">Lotteria</h3>
+        <p style="font-family:var(--ff-display);font-weight:300;font-size:clamp(15px,1.3vw,17px);color:var(--muted-dark);line-height:1.35;margin:0 0 30px">Fast Food, Haute Couture.</p>
         <div class="work-item__tags"><span>Brand Campaign</span><span>Food Campaign</span><span>Editorial Photography</span><span>Editorial</span><span>OOH</span><span>Video</span></div>
         <p>Spec campaign for Lotteria — the iconic Korean fast food chain reimagined through a high fashion lens. One model, one restaurant, one story: from the first bite to the city streets. Full AI production — editorial photography, dynamic product visuals, OOH placements, and campaign video. Every image generated, directed, and post-produced in-house.</p>
       </div>
@@ -1316,7 +1326,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       </div>
       <div class="work-item__body">
         <span class="work-item__no">Case III</span>
-        <h3>The World Is Your Studio</h3>
+        <h3 style="margin-bottom:12px">The World Is Your Studio</h3>
+        <p style="font-family:var(--ff-display);font-weight:300;font-size:clamp(15px,1.3vw,17px);color:var(--muted-dark);line-height:1.35;margin:0 0 30px">Five Models. Six Locations. No Flights, No Crew, No Studio.</p>
         <div class="work-item__tags"><span>Editorial Photography</span><span>Editorial</span><span>Fashion</span><span>Lookbook</span></div>
         <p>AI-generated fashion editorial. Five models, five looks — placed across six locations worldwide. No flights. No crew. No studio. Paris · Japan · Safari · Bora Bora · Greece · Area 51</p>
       </div>
@@ -1361,7 +1372,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       </div>
       <div class="work-item__body">
         <span class="work-item__no">Case IV</span>
-        <h3>YSL Beauty — Crash Heart Cream</h3>
+        <h3 style="margin-bottom:12px">YSL Beauty</h3>
+        <p style="font-family:var(--ff-display);font-weight:300;font-size:clamp(15px,1.3vw,17px);color:var(--muted-dark);line-height:1.35;margin:0 0 30px">Crash Heart Cream — Beauty Campaign Concept.</p>
         <div class="work-item__tags"><span>Beauty Campaign</span><span>Editorial Photography</span><span>Product Visuals</span><span>Motion</span></div>
         <p>Editorial campaign concept — models, product hero shots, motion content.</p>
         <p style="font-size:11px;opacity:.35;margin-top:16px">Concept campaign. Not affiliated with YSL Beauty.</p>
@@ -1416,7 +1428,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       </div>
       <div class="work-item__body">
         <span class="work-item__no">Case V</span>
-        <h3>espressOh — Wake Up Clean</h3>
+        <h3 style="margin-bottom:12px">espressOh</h3>
+        <p style="font-family:var(--ff-display);font-weight:300;font-size:clamp(15px,1.3vw,17px);color:var(--muted-dark);line-height:1.35;margin:0 0 30px">Wake Up Clean.</p>
         <div class="work-item__tags"><span>Skincare Campaign</span><span>Editorial Photography</span><span>UGC</span><span>Social Content</span><span>Product Visuals</span></div>
         <p>Spec UGC campaign for espressOh, the Italian clean-beauty label built around the ritual of a morning espresso. A single model, a pink-tiled bathroom, one cleansing gel — real skin, real routine, no studio gloss, in step with the brand's own social-first, no-campaign identity. Product beauty shots and a social-grid close round out the story.</p>
       </div>
@@ -1468,7 +1481,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       </div>
       <div class="work-item__body">
         <span class="work-item__no">Case VI</span>
-        <h3>Adora Swim — Old Walls, New Story</h3>
+        <h3 style="margin-bottom:12px">Adora Swim</h3>
+        <p style="font-family:var(--ff-display);font-weight:300;font-size:clamp(15px,1.3vw,17px);color:var(--muted-dark);line-height:1.35;margin:0 0 30px">Old Walls, New Story.</p>
         <div class="work-item__tags"><span>Swimwear Campaign</span><span>Editorial Photography</span><span>Editorial</span><span>Video</span></div>
         <p>Spec campaign for Adora Swim — sculptural swimwear framed against Moroccan architecture. Zellige tilework, terracotta arches and the Agafay desert as a single continuous story: old walls, new story. Full AI production — editorial photography, campaign video, and post-production. Every frame generated, directed and finished in-house.</p>
       </div>
@@ -1537,7 +1551,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       </div>
       <div class="work-item__body">
         <span class="work-item__no">Case VIII</span>
-        <h3>UNDEAD COUTURE</h3>
+        <h3 style="margin-bottom:12px">Undead Couture</h3>
+        <p style="font-family:var(--ff-display);font-weight:300;font-size:clamp(15px,1.3vw,17px);color:var(--muted-dark);line-height:1.35;margin:0 0 30px">Six Characters. Six Ruined Cities. One Collection That Refuses To Die.</p>
         <div class="work-item__tags"><span>Fashion Editorial</span><span>Editorial Photography</span><span>Conceptual</span><span>Video</span></div>
         <p>Ann Demeulemeester's collections have always lived close to decay — draped fabric, undone seams, a darkness that reads as beauty rather than threat. It felt like the natural next step to push that language further: into a full apocalypse, where the clothing survives even as everything around it doesn't. Six looks, six collapsed cities, one closing film.</p>
         <p style="font-size:11px;opacity:.35;margin-top:16px">Concept campaign. Not affiliated with Ann Demeulemeester.</p>
@@ -1592,15 +1607,11 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       </div>
       <div class="work-item__body">
         <span class="work-item__no">Case IX</span>
-        <h3>CRYONA</h3>
-        <p style="font-family:var(--f-display);font-weight:300;font-size:clamp(17px,1.6vw,21px);color:var(--champagne);line-height:1.25;margin:-14px 0 22px">Cryo-Active Peptide Serum — Concept Skincare Campaign</p>
+        <h3 style="margin-bottom:12px">Cryona</h3>
+        <p style="font-family:var(--ff-display);font-weight:300;font-size:clamp(15px,1.3vw,17px);color:var(--muted-dark);line-height:1.35;margin:0 0 30px">Cryo-Active Peptide Serum — Concept Skincare Campaign</p>
         <div class="work-item__tags"><span>Skincare Campaign</span><span>Editorial Photography</span><span>Macro Texture</span><span>Product Visuals</span><span>Video</span></div>
         <p>Concept skincare campaign for a fictional product line — full visual system from macro product shots to beauty close-ups, plus a short vertical video. Styling (metallic corset, liquid-glass jewelry) built to extend the product concept onto the model, not just sit beside it.</p>
       </div>
-    </div>
-
-    <div class="case-full">
-      <img src="Cryo/C1.jpg" alt="CRYONA — campaign spread" loading="lazy">
     </div>
 
     <div class="case-diptych">
@@ -1618,7 +1629,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       <img src="Cryo/C7.jpg" alt="CRYONA — campaign frame" loading="lazy">
     </div>
 
-    <div class="case-full case-full--vert">
+    <div class="case-full">
       <video src="Cryo/C8.mp4" loop muted playsinline preload="none"></video>
     </div>
 
@@ -1636,8 +1647,8 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       </div>
       <div class="work-item__body">
         <span class="work-item__no">Case VII</span>
-        <h3 style="margin-bottom:12px">HALO</h3>
-        <p style="font-family:var(--ff-display);font-weight:300;font-size:clamp(20px,2.4vw,32px);color:var(--muted-dark);line-height:1.15;margin:0 0 40px">Brand From Scratch. Zero Shoot Days.</p>
+        <h3 style="margin-bottom:12px">Halo</h3>
+        <p style="font-family:var(--ff-display);font-weight:300;font-size:clamp(15px,1.3vw,17px);color:var(--muted-dark);line-height:1.35;margin:0 0 30px">Brand From Scratch. Zero Shoot Days.</p>
         <div class="work-item__tags"><span>Brand Campaign</span><span>Editorial Photography</span><span>Packaging Design</span><span>Product Design</span></div>
         <p>HALO is a conceptual wellness brand designed from the ground up — naming, visual identity, packaging, and a full commercial campaign with an AI model, down to merch and a branded vending machine. Every asset, from product renders to lifestyle shots, generated entirely with AI.</p>
       </div>
