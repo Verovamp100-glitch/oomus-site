@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FR6X1QY8HH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  // nothing is stored until the visitor accepts
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-FR6X1QY8HH');
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy — OoMuS</title>
@@ -93,7 +110,28 @@
 
         .contact-block p { margin-bottom: 8px; }
         .contact-block p:last-child { margin-bottom: 0; }
-    </style>
+    
+/* ============================================================
+   cookie consent
+   ============================================================ */
+.cc{position:fixed;left:0;right:0;bottom:0;z-index:4000;background:rgba(19,19,20,.94);
+  -webkit-backdrop-filter:saturate(140%) blur(14px);backdrop-filter:saturate(140%) blur(14px);
+  border-top:1px solid var(--line-dark-soft,rgba(243,239,231,.12));transform:translateY(110%);
+  transition:transform .6s var(--ease,cubic-bezier(.22,.61,.36,1))}
+.cc.show{transform:none}
+.cc__in{max-width:var(--maxw,1320px);margin:0 auto;padding:22px var(--pad,clamp(20px,5vw,80px));display:flex;gap:clamp(20px,4vw,60px);align-items:center;flex-wrap:wrap}
+.cc__t{flex:1;min-width:250px;font-family:var(--f-ui,Jost,-apple-system,Helvetica,Arial,sans-serif);font-weight:300;font-size:13.5px;line-height:1.6;color:#c9c4bd}
+.cc__t a{color:var(--champagne,#C9A876);text-decoration:none;border-bottom:1px solid rgba(201,168,118,.35)}
+.cc__b{display:flex;gap:12px;flex-wrap:wrap}
+.cc button{font-family:var(--f-ui,Jost,-apple-system,Helvetica,Arial,sans-serif);font-weight:400;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:12px 22px;cursor:pointer;
+  transition:background .35s ease,color .35s ease,border-color .35s ease,transform .18s ease}
+.cc button:active{transform:scale(.985)}
+.cc__no{background:none;border:1px solid var(--line-dark-soft,rgba(243,239,231,.22));color:var(--text-dark,#F3EFE7)}
+.cc__no:hover{border-color:var(--champagne,#C9A876);color:var(--champagne,#C9A876)}
+.cc__yes{background:var(--champagne,#C9A876);border:1px solid var(--champagne,#C9A876);color:#16140F}
+.cc__yes:hover{background:var(--champagne-soft,#D9C09A);border-color:var(--champagne-soft,#D9C09A)}
+@media(max-width:700px){.cc__in{flex-direction:column;align-items:flex-start;gap:16px}.cc__b{width:100%}.cc button{flex:1}}
+</style>
 </head>
 <body>
     <div class="container">
@@ -136,5 +174,36 @@
             <p><a href="mailto:oomustudio@proton.me">oomustudio@proton.me</a></p>
         </div>
     </div>
+
+<!-- ============================ COOKIE CONSENT ============================ -->
+<div class="cc" id="cookieConsent" role="dialog" aria-label="Cookie consent" aria-live="polite">
+  <div class="cc__in">
+    <p class="cc__t">We use analytics cookies to understand how this site is used. Nothing is shared with advertisers. See our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+    <div class="cc__b">
+      <button type="button" class="cc__no" id="ccNo">Decline</button>
+      <button type="button" class="cc__yes" id="ccYes">Accept</button>
+    </div>
+  </div>
+</div>
+<script>
+/* cookie consent */
+(function(){
+  var KEY='oomus-consent', el=document.getElementById('cookieConsent');
+  if(!el) return;
+  var saved=null;
+  try{ saved=localStorage.getItem(KEY); }catch(e){}
+  function grant(v){
+    try{ localStorage.setItem(KEY,v); }catch(e){}
+    if(typeof gtag==='function'){
+      gtag('consent','update',{analytics_storage: v==='granted' ? 'granted' : 'denied'});
+    }
+  }
+  if(saved==='granted'||saved==='denied'){ grant(saved); return; }
+  setTimeout(function(){ el.classList.add('show'); },1400);
+  function close(v){ grant(v); el.classList.remove('show'); }
+  document.getElementById('ccYes').addEventListener('click',function(){close('granted')});
+  document.getElementById('ccNo').addEventListener('click',function(){close('denied')});
+})();
+</script>
 </body>
 </html>
