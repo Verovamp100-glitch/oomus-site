@@ -54,7 +54,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..700;1,62..125,300..600&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    OoMuS — design tokens
@@ -82,8 +82,12 @@
   --pad:clamp(20px,5vw,80px);
   --section-y:clamp(72px,10vw,150px);
 
-  --f-display:"Cormorant Garamond",Georgia,serif;
-  --f-ui:"Jost",-apple-system,Helvetica,Arial,sans-serif;
+  --f-display:"Archivo",-apple-system,Helvetica,Arial,sans-serif;
+  --f-ui:"Archivo",-apple-system,Helvetica,Arial,sans-serif;
+
+  --ivory:#EDE3CE;
+  --ivory-hi:#FBF6EC;
+  --ivory-lo:#DFD3B8;
 
   --ease:cubic-bezier(.22,.61,.36,1);
 }
@@ -187,21 +191,52 @@ p{font-size:clamp(14px,1.15vw,16px);color:var(--muted-dark)}
    buttons
    ============================================================ */
 .btn{
-  display:inline-flex;align-items:center;gap:.7em;
-  font-family:var(--f-ui);font-weight:400;
-  font-size:13px;letter-spacing:.18em;text-transform:uppercase;
-  padding:16px 30px;border-radius:0;
-  transition:all .4s var(--ease);
+  display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  font-family:var(--f-ui);font-weight:500;font-stretch:100%;
+  font-size:14px;letter-spacing:.005em;text-transform:none;
+  padding:8px 8px 8px 24px;border-radius:999px;
   position:relative;
+  transition:transform .2s var(--ease),box-shadow .3s var(--ease),background .3s var(--ease),color .3s var(--ease);
 }
-.btn--solid{background:var(--champagne);color:var(--ink)}
-.btn--solid:hover{background:var(--champagne-soft)}
-.btn--ghost{border:1px solid var(--line-dark);color:var(--text-dark)}
-.btn--ghost:hover{border-color:var(--champagne);color:var(--champagne)}
-.section--light .btn--ghost,.section--bone .btn--ghost{border-color:var(--line-light);color:var(--text-light)}
-.section--light .btn--ghost:hover,.section--bone .btn--ghost:hover{border-color:#A77F3F;color:#A77F3F}
-.btn .arw{transition:transform .4s var(--ease)}
-.btn:hover .arw{transform:translateX(5px)}
+/* кнопка без стрелки получает симметричные поля, текст встаёт по центру */
+.btn:not(:has(.arw)){padding:14px 28px}
+.btn .arw{
+  width:34px;height:34px;border-radius:999px;flex:none;
+  display:inline-flex;align-items:center;justify-content:center;font-size:13px;line-height:1;
+  transition:transform .35s var(--ease),background .35s var(--ease);
+}
+.btn:active{transform:translateY(0) scale(.985)}
+
+.btn--solid{
+  color:#16140F;
+  background:radial-gradient(120% 160% at 30% -20%,var(--ivory-hi) 0%,var(--ivory) 52%,var(--ivory-lo) 100%);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,.95),
+    inset 0 -2px 3px rgba(140,118,72,.18),
+    0 10px 24px rgba(11,11,12,.5),
+    0 2px 5px rgba(11,11,12,.4);
+}
+.btn--solid .arw{background:rgba(22,20,15,.10);box-shadow:inset 0 1px 1px rgba(255,255,255,.7)}
+.btn--solid:hover{transform:translateY(-2px);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.95),inset 0 -2px 3px rgba(140,118,72,.18),0 16px 34px rgba(11,11,12,.55),0 3px 7px rgba(11,11,12,.4)}
+.btn--solid:hover .arw{transform:translateX(3px);background:rgba(22,20,15,.16)}
+
+.btn--ghost{
+  color:var(--text-dark);
+  background:linear-gradient(180deg,rgba(244,240,231,.09),rgba(244,240,231,.02));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 0 0 1px rgba(237,227,206,.20),0 10px 24px rgba(11,11,12,.45);
+}
+.btn--ghost .arw{background:rgba(244,240,231,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+.btn--ghost:hover{transform:translateY(-2px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 0 0 1px rgba(237,227,206,.34),0 16px 34px rgba(11,11,12,.5)}
+.section--light .btn--ghost,.section--bone .btn--ghost{
+  color:var(--text-light);
+  background:linear-gradient(180deg,rgba(22,20,15,.05),rgba(22,20,15,.01));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 0 0 1px rgba(22,20,15,.16),0 8px 20px rgba(22,20,15,.10);
+}
+.section--light .btn--ghost .arw,.section--bone .btn--ghost .arw{background:rgba(22,20,15,.07)}
+.section--light .btn--ghost:hover,.section--bone .btn--ghost:hover{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 0 0 1px rgba(22,20,15,.3),0 14px 28px rgba(22,20,15,.14)}
 
 /* ============================================================
    image frame / placeholder
@@ -235,7 +270,7 @@ p{font-size:clamp(14px,1.15vw,16px);color:var(--muted-dark)}
    header
    ============================================================ */
 .header{
-  position:fixed;top:0;left:0;right:0;z-index:100;
+  position:fixed;top:0;left:0;right:0;z-index:var(--z-nav);
   transition:background .5s var(--ease),border-color .5s var(--ease),padding .4s var(--ease);
   border-bottom:1px solid transparent;
   padding:22px 0;
@@ -447,10 +482,6 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
 .ba__handle::before,.ba__handle::after{content:"";position:absolute;top:50%;width:0;height:0;border-block:5px solid transparent}
 .ba__handle::before{left:11px;border-right:7px solid var(--cream);transform:translateY(-50%)}
 .ba__handle::after{right:11px;border-left:7px solid var(--cream);transform:translateY(-50%)}
-.ba__label{position:absolute;bottom:14px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream);
-  padding:5px 11px;border:1px solid var(--line-dark);background:rgba(11,11,12,.4);pointer-events:none}
-.ba__label--before{left:14px}
-.ba__label--after{right:14px}
 
 /* ---- The Eye Behind OoMuS (founder) ---- */
 .eye-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,5vw,72px);align-items:center}
@@ -470,9 +501,9 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
 .work-card:hover .work-card__cta{opacity:.7}
 
 /* --- case overlay --- */
-.case-overlay{position:fixed;inset:0;z-index:9000;background:var(--ink);overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+.case-overlay{position:fixed;inset:0;z-index:var(--z-overlay);background:var(--ink);overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
 .case-overlay.active{opacity:1;pointer-events:auto}
-.case-overlay__close{position:fixed;top:24px;right:28px;z-index:9001;width:48px;height:48px;background:none;border:1px solid rgba(244,240,231,.2);color:var(--cream);font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .3s}
+.case-overlay__close{position:fixed;top:24px;right:28px;z-index:calc(var(--z-overlay) + 1);width:48px;height:48px;background:none;border:1px solid rgba(244,240,231,.2);color:var(--cream);font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .3s}
 .case-overlay__close:hover{border-color:var(--champagne)}
 .case-overlay__inner{max-width:1200px;margin:0 auto;padding:80px clamp(20px,4vw,48px) 120px}
 
@@ -545,7 +576,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
 .guide-card__btn:hover{opacity:.85}
 
 /* --- guide payment overlay --- */
-.guide-overlay{position:fixed;inset:0;z-index:9000;background:rgba(11,11,12,.92);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
+.guide-overlay{position:fixed;inset:0;z-index:var(--z-overlay);background:rgba(11,11,12,.92);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s var(--ease)}
 .guide-overlay.active{opacity:1;pointer-events:auto}
 .guide-overlay__box{background:var(--ink);border:1px solid rgba(201,168,118,.2);max-width:520px;width:90%;padding:clamp(28px,4vw,48px);position:relative}
 .guide-overlay__close{position:absolute;top:16px;right:18px;width:36px;height:36px;background:none;border:none;color:var(--cream);font-size:20px;cursor:pointer;opacity:.6;transition:opacity .3s}
@@ -726,26 +757,359 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
 /* ============================================================
    cookie consent
    ============================================================ */
-.cc{position:fixed;left:0;right:0;bottom:0;z-index:4000;background:rgba(19,19,20,.94);
+.cookie-bar{position:fixed;left:0;right:0;bottom:0;z-index:4000;background:rgba(19,19,20,.94);
   -webkit-backdrop-filter:saturate(140%) blur(14px);backdrop-filter:saturate(140%) blur(14px);
   border-top:1px solid var(--line-dark-soft,rgba(243,239,231,.12));transform:translateY(110%);
   transition:transform .6s var(--ease,cubic-bezier(.22,.61,.36,1))}
-.cc.show{transform:none}
-.cc__in{max-width:var(--maxw,1320px);margin:0 auto;padding:22px var(--pad,clamp(20px,5vw,80px));display:flex;gap:clamp(20px,4vw,60px);align-items:center;flex-wrap:wrap}
-.cc__t{flex:1;min-width:250px;font-family:var(--f-ui,Jost,-apple-system,Helvetica,Arial,sans-serif);font-weight:300;font-size:13.5px;line-height:1.6;color:#c9c4bd}
-.cc__t a{color:var(--champagne,#C9A876);text-decoration:none;border-bottom:1px solid rgba(201,168,118,.35)}
-.cc__b{display:flex;gap:12px;flex-wrap:wrap}
-.cc button{font-family:var(--f-ui,Jost,-apple-system,Helvetica,Arial,sans-serif);font-weight:400;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:12px 22px;cursor:pointer;
+.cookie-bar.show{transform:none}
+.cookie-bar__in{max-width:var(--maxw,1320px);margin:0 auto;padding:22px var(--pad,clamp(20px,5vw,80px));display:flex;gap:clamp(20px,4vw,60px);align-items:center;flex-wrap:wrap}
+.cookie-bar__t{flex:1;min-width:250px;font-family:var(--f-ui,Jost,-apple-system,Helvetica,Arial,sans-serif);font-weight:300;font-size:13.5px;line-height:1.6;color:#c9c4bd}
+.cookie-bar__t a{color:var(--champagne,#C9A876);text-decoration:none;border-bottom:1px solid rgba(201,168,118,.35)}
+.cookie-bar__b{display:flex;gap:12px;flex-wrap:wrap}
+.cookie-bar button{font-family:var(--f-ui,Jost,-apple-system,Helvetica,Arial,sans-serif);font-weight:400;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:12px 22px;cursor:pointer;
   transition:background .35s ease,color .35s ease,border-color .35s ease,transform .18s ease}
-.cc button:active{transform:scale(.985)}
-.cc__no{background:none;border:1px solid var(--line-dark-soft,rgba(243,239,231,.22));color:var(--text-dark,#F3EFE7)}
-.cc__no:hover{border-color:var(--champagne,#C9A876);color:var(--champagne,#C9A876)}
-.cc__yes{background:var(--champagne,#C9A876);border:1px solid var(--champagne,#C9A876);color:#16140F}
-.cc__yes:hover{background:var(--champagne-soft,#D9C09A);border-color:var(--champagne-soft,#D9C09A)}
-@media(max-width:700px){.cc__in{flex-direction:column;align-items:flex-start;gap:16px}.cc__b{width:100%}.cc button{flex:1}}
+.cookie-bar button:active{transform:scale(.985)}
+.cookie-bar__no{background:none;border:1px solid var(--line-dark-soft,rgba(243,239,231,.22));color:var(--text-dark,#F3EFE7)}
+.cookie-bar__no:hover{border-color:var(--champagne,#C9A876);color:var(--champagne,#C9A876)}
+.cookie-bar__yes{background:var(--champagne,#C9A876);border:1px solid var(--champagne,#C9A876);color:#16140F}
+.cookie-bar__yes:hover{background:var(--champagne-soft,#D9C09A);border-color:var(--champagne-soft,#D9C09A)}
+@media(max-width:700px){.cookie-bar__in{flex-direction:column;align-items:flex-start;gap:16px}.cookie-bar__b{width:100%}.cookie-bar button{flex:1}}
+
+/* ============================================================
+   Archivo: широкий гротеск в заголовках, обычный в тексте
+   ============================================================ */
+h1,h2,.case-intro h3,.work-item__body h3,.work-card h3,.guide-card__title,.guide-overlay__box h3,.m-logo{
+  font-family:var(--f-display);
+  font-weight:600;
+  font-stretch:118%;
+  letter-spacing:-.035em;
+}
+h1{line-height:.98}
+h2{line-height:1.02}
+.case-intro h3,.work-item__body h3{line-height:1.06;letter-spacing:-.03em}
+h1 em,h2 em,.hero h1 em{font-style:italic;font-weight:600}
+.step__no{font-family:var(--f-display);font-weight:600;font-stretch:118%;letter-spacing:-.03em}
+.eye__text p{font-family:var(--f-ui);font-weight:300;font-stretch:100%;letter-spacing:-.01em;line-height:1.5}
+.lead,body,p{font-stretch:100%}
+.hero h1{font-size:clamp(34px,5.8vw,78px);max-width:18ch}
+.cta h2{font-size:clamp(38px,5vw,72px)}
+/* кость на остальных кнопках */
+.nav-cta{color:var(--ivory)!important;border-color:rgba(237,227,206,.42)!important}
+.nav-cta:hover{background:var(--ivory)!important;color:#16140F!important;border-color:var(--ivory)!important}
+.calc__cta-btn{
+  border:none!important;color:#16140F!important;border-radius:999px!important;
+  background:radial-gradient(120% 160% at 30% -20%,var(--ivory-hi) 0%,var(--ivory) 52%,var(--ivory-lo) 100%)!important;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.95),inset 0 -2px 3px rgba(140,118,72,.18),0 10px 24px rgba(11,11,12,.5);
+  transition:transform .2s var(--ease),box-shadow .3s var(--ease)}
+.calc__cta-btn:hover{transform:translateY(-2px);box-shadow:inset 0 1px 1px rgba(255,255,255,.95),0 16px 34px rgba(11,11,12,.55)}
+.calc__cta-btn:active{transform:translateY(0) scale(.985)}
+.cookie-bar__yes{border-radius:999px!important;border:none!important;
+  background:radial-gradient(120% 160% at 30% -20%,var(--ivory-hi) 0%,var(--ivory) 52%,var(--ivory-lo) 100%)!important;color:#16140F!important;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 8px 18px rgba(11,11,12,.45)}
+.cookie-bar__no{border-radius:999px!important}
+
+/* ============================================================
+   шаги: строки на линейках вместо коробок
+   ============================================================ */
+.steps{display:block;background:none;border:none;border-top:1px solid var(--line-dark-soft);max-width:980px}
+.step{
+  background:none;min-height:0;
+  display:grid;grid-template-columns:clamp(70px,8vw,110px) 1fr;column-gap:clamp(20px,3vw,38px);row-gap:0;
+  align-items:baseline;
+  padding:clamp(34px,3.8vw,54px) 0;
+  border-bottom:1px solid var(--line-dark-soft);
+  transition:transform .38s var(--ease),border-color .38s var(--ease);
+}
+.step:hover{transform:translateY(-6px);border-bottom-color:var(--champagne)}
+.step__no{grid-column:1;grid-row:1 / span 2;font-size:clamp(30px,3.4vw,46px);line-height:1;margin-bottom:0}
+.step h3{grid-column:2;grid-row:1;margin:0 0 9px;font-size:clamp(19px,1.8vw,24px)}
+.step p{grid-column:2;grid-row:2;font-size:clamp(14px,1.1vw,15px);max-width:58ch}
+.section--light .steps{background:none;border-color:var(--line-light)}
+.section--light .step{background:none;border-bottom-color:var(--line-light)}
+@media(max-width:640px){
+  .step{grid-template-columns:1fr;row-gap:8px;align-items:start}
+  .step__no{grid-column:1;grid-row:auto;font-size:28px}
+  .step h3,.step p{grid-column:1;grid-row:auto}
+}
+
+/* ============================================================
+   теги: через тонкую косую вместо рамок
+   ============================================================ */
+.work-card__tags,.work-item__tags{display:block;margin-top:6px}
+.work-card__tags span,.work-item__tags span{
+  border:none;padding:0;display:inline;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-dark);line-height:2;
+}
+/* косая остаётся на конце строки, а не повисает в начале следующей */
+.work-card__tags span:not(:last-child)::after,.work-item__tags span:not(:last-child)::after{
+  content:"/";color:rgba(201,168,118,.55);letter-spacing:0;margin:0 9px 0 6px;
+}
+
+/* ============================================================
+   «почему мы»: три на два, без коробок
+   ============================================================ */
+.why-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(26px,3vw,54px);
+  background:none;border:none;
+}
+.why{
+  display:block;background:none;padding:20px 0 0;
+  border-top:1px solid var(--line-light);border-bottom:none;
+  transition:transform .38s var(--ease),border-color .38s var(--ease);
+}
+.why:hover{transform:translateY(-6px);border-top-color:var(--champagne)}
+.why__no{
+  font-family:var(--f-display);font-weight:600;font-stretch:118%;letter-spacing:-.02em;
+  font-size:clamp(28px,2.6vw,34px);line-height:1;display:block;margin:0 0 16px;color:#C9A876;
+}
+.why h3{margin-bottom:8px;font-size:clamp(18px,1.7vw,21px)}
+.why p{font-size:13.5px}
+@media(max-width:900px){.why-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.why-grid{grid-template-columns:1fr}}
+
+/* ============================================================
+   слой отделки: зерно, тонированные тени, вход, отклик, фокус
+   ============================================================ */
+:root{--z-nav:100;--z-mobile-nav:1000;--z-overlay:2000;--z-grain:3000}
+
+.reveal{transform:translateY(34px);filter:blur(6px);transition:opacity 1.05s var(--ease),transform 1.05s var(--ease),filter 1.05s var(--ease)}
+.reveal.in{filter:blur(0)}
+[data-delay="4"]{transition-delay:.32s}
+[data-delay="5"]{transition-delay:.40s}
+[data-delay="6"]{transition-delay:.48s}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{
+  outline:1px solid var(--ivory);outline-offset:3px;border-radius:2px;
+}
+h1,h2,h3,.work-card h3{text-wrap:balance}
+p,.lead{text-wrap:pretty}
+/* блоки, свёрстанные под тёмный фон, на светлой секции */
+.section--light .steps{background:none;border-color:var(--line-light)}
+.section--light .step{background:none;border-bottom-color:var(--line-light)}
+.section--light .step h3{color:var(--text-light)}
+.section--light .faq-list,.section--light .faq{border-color:var(--line-light)}
+.section--light .faq__q h3{color:var(--text-light)}
+.section--light .faq__q:hover h3{color:#8A6A2F}
+.section--light .faq__ic::before,.section--light .faq__ic::after{background:#A77F3F}
+@media (prefers-reduced-motion:reduce){
+  .reveal{filter:none;transform:none;transition:none}
+  }
+
+/* римские цифры на светлых секциях: тёмное золото вместо шампани */
+
+/* плёночное зерно и тонированные тени */
+.grain{
+  position:fixed;inset:0;z-index:var(--z-grain);pointer-events:none;
+  opacity:.40;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
+}
+.case-overlay__inner{box-shadow:0 30px 80px rgba(11,11,12,.62)}
+@media (prefers-reduced-motion:reduce){.grain{opacity:.28}}
+
+/* подсветка при наведении: номер и заголовок меняют цвет */
+.step__no,.step h3,.why__no,.why h3{transition:color .38s var(--ease)}
+.step:hover .step__no,.step:hover h3{color:var(--ivory)}
+.section--light .step:hover .step__no,.section--light .step:hover h3{color:#8A6A2F}
+.why:hover .why__no{color:#8A6A2F}
+.why:hover h3{color:#000}
+
+/* ============ CTA: один круг + тихая ссылка ============ */
+.btn.btn--solid{
+  width:clamp(118px,11.5vw,146px);height:clamp(118px,11.5vw,146px);
+  border-radius:50%!important;padding:0!important;
+  flex-direction:column;gap:4px;text-align:center;
+  font-weight:500;font-size:13px;letter-spacing:.01em;line-height:1.22;
+  color:#16140F;
+  background:radial-gradient(120% 160% at 30% -10%,var(--ivory-hi),var(--ivory) 55%,var(--ivory-lo));
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.95),inset 0 -2px 3px rgba(140,118,72,.2),0 14px 30px rgba(11,11,12,.5);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.btn.btn--solid:hover{transform:translateY(-4px) scale(1.03);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.95),0 22px 44px rgba(11,11,12,.55)}
+.btn.btn--solid:active{transform:translateY(0) scale(.98)}
+
+/* второстепенная — просто ссылка */
+.btn.btn--ghost{
+  background:none!important;box-shadow:none!important;border:none!important;
+  padding:0 0 4px!important;border-radius:0!important;
+  position:relative;display:inline-block;
+  font-weight:500;font-size:clamp(15px,1.4vw,17px);letter-spacing:-.005em;
+  color:var(--muted-dark);transition:color .4s var(--ease);
+}
+.btn.btn--ghost::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;
+  background:var(--ivory);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.btn.btn--ghost:hover{color:var(--ivory);transform:none}
+.btn.btn--ghost:hover::after{transform:scaleX(1)}
+.section--light .btn.btn--ghost{color:var(--muted-light)}
+.section--light .btn.btn--ghost::after{background:#8A6A2F}
+.section--light .btn.btn--ghost:hover{color:#8A6A2F}
+.hero__cta{gap:clamp(26px,3.4vw,46px);align-items:center}
+.calc__cta-btn{
+  width:146px;height:146px;border-radius:50%!important;padding:0!important;
+  display:inline-flex;align-items:center;justify-content:center;text-align:center;line-height:1.22;
+  font-size:13px!important;font-weight:500!important;
+  text-transform:none!important;letter-spacing:.01em!important;
+}
+
+/* стрелка есть и поворачивается */
+.btn.btn--solid .arw{
+  width:auto;height:auto;background:none!important;box-shadow:none!important;border-radius:0;
+  font-size:16px;margin-top:2px;
+  transition:transform .45s var(--ease);
+}
+.btn.btn--solid:hover .arw{transform:rotate(45deg)}
+.btn.btn--ghost .arw{display:none!important}
+
+/* ============ FAQ: без значка ============ */
+.faq__ic{display:none!important}
+.faq{position:relative}
+.faq::before{
+  content:"";position:absolute;left:0;top:calc(clamp(24px,3vw,38px) + .55em);
+  width:0;height:1px;background:var(--champagne);
+  transition:width .45s var(--ease);
+}
+.faq__q{transition:padding-left .45s var(--ease)}
+.faq.open .faq__q{padding-left:36px}
+.faq.open::before{width:24px}
+.faq.open .faq__q h3{color:var(--champagne)}
+.section--light .faq::before{background:#8A6A2F}
+.section--light .faq.open .faq__q h3{color:#8A6A2F}
+.section--light .faq__q:hover h3{color:#8A6A2F}
+
+/* ============================================================
+   калькулятор без коробок
+   ============================================================ */
+.calc__box{max-width:820px}
+.calc__head{text-align:left;margin-bottom:clamp(34px,4vw,52px)}
+.calc__head h2{font-family:var(--f-display);font-weight:600;font-stretch:118%;letter-spacing:-.035em;
+  font-size:clamp(30px,4vw,52px);line-height:1.02}
+.calc__head p{margin-top:16px;max-width:52ch}
+
+/* карточка -> просто область */
+.calc__card{background:none!important;border:none!important;padding:0!important}
+
+/* поля -> подчёркивание, как в форме контактов */
+#calcForm{display:grid;grid-template-columns:repeat(3,1fr);column-gap:clamp(20px,3vw,40px);row-gap:0;align-items:end}
+#calcForm .calc__btn{grid-column:1/-1;justify-self:start}
+.calc__field{margin-bottom:0!important}
+.calc__label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-dark);margin-bottom:6px;font-weight:400}
+.calc__hint{display:none}
+.calc__input{
+  background:transparent!important;border:0!important;border-bottom:1px solid var(--line-dark-soft)!important;
+  padding:12px 0!important;font-size:clamp(18px,2vw,24px)!important;color:var(--text-dark)!important;
+  border-radius:0!important;transition:border-color .35s var(--ease);
+}
+.calc__input:focus{border-bottom-color:var(--ivory)!important}
+.calc__input--prefix{padding-left:20px!important}
+.calc__prefix{left:0;font-size:18px;opacity:.5}
+
+/* кнопка «посчитать» -> тихая ссылка */
+.calc__btn{
+  width:auto!important;margin-top:clamp(30px,4vw,46px)!important;padding:0 0 5px!important;
+  background:none!important;border:none!important;
+  font-size:clamp(15px,1.4vw,17px)!important;letter-spacing:-.005em!important;text-transform:none!important;
+  color:var(--muted-dark)!important;position:relative;font-weight:500;
+  transition:color .4s var(--ease);
+}
+.calc__btn::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--ivory);
+  transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.calc__btn.active{color:var(--text-dark)!important;cursor:pointer}
+.calc__btn.active:hover{color:var(--ivory)!important;opacity:1}
+.calc__btn.active:hover::after{transform:scaleX(1)}
+
+/* результаты: две колонки через линейку, без карточек */
+.calc__results.show{padding-top:clamp(34px,4vw,50px);border-top:1px solid var(--line-dark-soft);margin-top:clamp(34px,4vw,50px)}
+.calc__compare{gap:0!important;margin-bottom:clamp(30px,4vw,44px)!important}
+.calc__result-card{
+  background:none!important;border:none!important;padding:0 clamp(20px,3vw,40px)!important;text-align:left!important;
+}
+.calc__result-card+.calc__result-card{border-left:1px solid var(--line-dark-soft)!important}
+.calc__result-card:first-child{padding-left:0!important}
+.calc__result-label{font-size:11px;letter-spacing:.2em}
+.calc__result-amount{
+  font-family:var(--f-display);font-weight:600;font-stretch:118%;letter-spacing:-.03em;
+  font-size:clamp(30px,4.4vw,52px);
+}
+.calc__result-card--ai .calc__result-amount{color:var(--ivory)}
+
+/* процент: без плашки */
+.calc__savings{background:none!important;border:none!important;padding:0 0 clamp(28px,3.4vw,40px)!important;
+  text-align:left!important;margin-bottom:clamp(26px,3vw,36px)!important;border-bottom:1px solid var(--line-dark-soft)!important}
+.calc__savings-pct{font-family:var(--f-display);font-weight:600;font-stretch:118%;letter-spacing:-.035em;
+  font-size:clamp(52px,8vw,104px);color:var(--ivory)}
+.calc__savings-text{font-size:15px;margin-top:10px;opacity:.75}
+
+.calc__details{border-top:none!important;padding-top:0!important}
+.calc__detail-row{padding:11px 0;border-bottom:1px solid var(--line-dark-soft)}
+.calc__detail-row:last-child{border-bottom:none}
+.calc__results .calc__cta-btn{display:inline-flex!important;margin-top:clamp(26px,3vw,36px)}
+.calc__reset{display:block!important;width:auto!important;text-align:left;padding:0!important;margin-top:22px;
+  letter-spacing:.02em!important;text-transform:none!important;font-size:14px!important}
+.calc__note{text-align:left;margin-top:clamp(24px,3vw,34px)}
+@media(max-width:760px){
+  #calcForm{grid-template-columns:1fr;row-gap:26px}
+  .calc__compare{flex-direction:column;gap:26px!important}
+  .calc__result-card+.calc__result-card{border-left:none!important;border-top:1px solid var(--line-dark-soft)!important;padding:26px 0 0!important}
+  .calc__result-card{padding:0!important}
+}
+
+/* ============================================================
+   форма рамок: арка на кейсах, мягкое скругление везде ещё
+   ============================================================ */
+/* арка — только обложки кейсов */
+.work-card__img{border-radius:14px;overflow:hidden}
+
+/* мягкое скругление 14px — всё остальное */
+.marquee .frame,
+.model__img,
+.svc__img,
+.ba__slider,
+.eye__photo,
+.case-intro img,
+.case-diptych img,
+.case-diptych video,
+.case-full img,
+.case-full video,
+.ba-grid .frame{
+  border-radius:14px;
+  overflow:hidden;
+}
+/* внутренние слои моделей повторяют скругление */
+.model__img .frame,.model__img .cover,.model__img img{border-radius:inherit}
+.marquee .frame img{border-radius:inherit}
+
+/* кнопка Contact в меню — капсула, как остальные кнопки */
+.nav .nav-cta{border-radius:999px;padding:11px 24px}
+.mobile-nav .nav-cta{border-radius:999px}
+
+/* воздух в шапке калькулятора */
+.calc__head .eyebrow{display:block!important;margin-bottom:clamp(18px,2vw,26px)!important}
+.calc__head h2{margin-bottom:clamp(20px,2.4vw,30px)}
+.calc__head p{margin-top:0!important;line-height:1.7}
+
+/* закрыть блок «почему мы» линией снизу */
+.why-grid .why:nth-last-child(-n+3){border-bottom:1px solid var(--line-light);padding-bottom:clamp(24px,2.6vw,32px)}
+@media(max-width:900px){
+  .why-grid .why:nth-last-child(-n+3){border-bottom:none;padding-bottom:0}
+  .why-grid .why:nth-last-child(-n+2){border-bottom:1px solid var(--line-light);padding-bottom:clamp(24px,2.6vw,32px)}
+}
+@media(max-width:600px){
+  .why-grid .why:nth-last-child(-n+2){border-bottom:none;padding-bottom:0}
+  .why-grid .why:last-child{border-bottom:1px solid var(--line-light);padding-bottom:clamp(24px,2.6vw,32px)}
+}
+
+/* воздух внутри карточки кейса */
+.work-card__body{padding-top:22px}
+.work-card__body h3{margin-bottom:12px!important}
+.work-card__body h3 + p{margin-bottom:22px!important;line-height:1.35!important}
+.work-card__tags{margin-top:0!important;margin-bottom:20px!important}
+.work-card__tags span,.work-item__tags span{line-height:2.1}
+/* и внутри открытого кейса */
+.work-item__tags{margin-top:0!important;margin-bottom:26px!important}
 </style>
 </head>
 <body>
+<div class="grain" aria-hidden="true"></div>
 
 <!-- ============================ HEADER ============================ -->
 <header class="header" id="header">
@@ -757,7 +1121,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       <a href="#services" class="nav-link">Services</a>
       <a href="#process" class="nav-link">Process</a>
       <a href="#faq" class="nav-link">FAQ</a>
-      <a href="#contact" class="nav-cta">Start a project</a>
+      <a href="#contact" class="nav-cta">Contact</a>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </nav>
   </div>
@@ -807,7 +1171,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
   </div>
   <div class="wrap hero__inner">
     <span class="eyebrow reveal in">AI Creative Studio — Fashion &amp; Beauty Campaigns</span>
-    <h1 class="reveal in">Visual Worlds<br>for <em>Modern Brands.</em></h1>
+    <h1 class="reveal in">Visual Worlds<br>for <em>Modern<br>Brands.</em></h1>
     <div class="hero__sub">
       <p class="reveal in" data-delay="1">OoMuS creates ultra-realistic photography, films and visual campaigns for fashion, beauty &amp; modern brands — editorial quality without traditional production.</p>
       <div class="hero__cta reveal in" data-delay="2">
@@ -816,7 +1180,6 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       </div>
     </div>
   </div>
-  <div class="scroll-cue"><span class="ln"></span> Scroll</div>
 </section>
 
 <!-- ============================ REFERENCE FEED ============================ -->
@@ -853,15 +1216,11 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <img class="ba__img ba__after" src="Before%20%26%20After/B2.jpg" alt="After — retouched" loading="lazy" draggable="false">
         <img class="ba__img ba__before" src="Before%20%26%20After/B1.jpg" alt="Before — original" loading="lazy" draggable="false">
         <div class="ba__divider"><span class="ba__handle"></span></div>
-        <span class="ba__label ba__label--before">Before</span>
-        <span class="ba__label ba__label--after">After</span>
       </div>
       <div class="ba__slider reveal" data-delay="1" data-ba>
         <img class="ba__img ba__after" src="Before%20%26%20After/B4.jpg" alt="After — retouched" loading="lazy" draggable="false">
         <img class="ba__img ba__before" src="Before%20%26%20After/B3.JPG" alt="Before — original" loading="lazy" draggable="false">
         <div class="ba__divider"><span class="ba__handle"></span></div>
-        <span class="ba__label ba__label--before">Before</span>
-        <span class="ba__label ba__label--after">After</span>
       </div>
     </div>
   </div>
@@ -885,7 +1244,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <img class="gx" src="Selena/S3.jpg" alt="Selena" loading="lazy" hidden>
           <img class="gx" src="Selena/S4.jpg" alt="Selena" loading="lazy" hidden>1 / 4</span>
         </div>
-        <div class="model__bar"><span class="model__name">Selena</span><span class="model__id">Model 01</span></div>
+        <div class="model__bar"><span class="model__name">Selena</span><span class="model__id">Model 1</span></div>
         <dl class="model__meta">
           <div><dt>Age</dt><dd>25</dd></div>
           <div><dt>Height</dt><dd>178 cm</dd></div>
@@ -901,7 +1260,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <img class="gx" src="Yuki/Y04.jpg" alt="Yuki" loading="lazy" hidden>
           <span class="model__count">1 / 4</span>
         </div>
-        <div class="model__bar"><span class="model__name">Yuki</span><span class="model__id">Model 02</span></div>
+        <div class="model__bar"><span class="model__name">Yuki</span><span class="model__id">Model 2</span></div>
         <dl class="model__meta">
           <div><dt>Age</dt><dd>22</dd></div>
           <div><dt>Height</dt><dd>175 cm</dd></div>
@@ -917,7 +1276,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <img class="gx" src="Mina/M4.jpg" alt="Mina" loading="lazy" hidden>
           <span class="model__count">1 / 4</span>
         </div>
-        <div class="model__bar"><span class="model__name">Mina</span><span class="model__id">Model 03</span></div>
+        <div class="model__bar"><span class="model__name">Mina</span><span class="model__id">Model 3</span></div>
         <dl class="model__meta">
           <div><dt>Age</dt><dd>20</dd></div>
           <div><dt>Height</dt><dd>180 cm</dd></div>
@@ -933,7 +1292,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <img class="gx" src="Kai%20%3A%20Korean%20%3A%20Pink%3A%20Brown/K4.jpg" alt="Kai" loading="lazy" hidden>
           <span class="model__count">1 / 4</span>
         </div>
-        <div class="model__bar"><span class="model__name">Kai</span><span class="model__id">Model 04</span></div>
+        <div class="model__bar"><span class="model__name">Kai</span><span class="model__id">Model 4</span></div>
         <dl class="model__meta">
           <div><dt>Age</dt><dd>23</dd></div>
           <div><dt>Height</dt><dd>181 cm</dd></div>
@@ -949,7 +1308,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <img class="gx" src="Elli/Elli4.jpg" alt="Elli" loading="lazy" hidden>
           <span class="model__count">1 / 4</span>
         </div>
-        <div class="model__bar"><span class="model__name">Elli</span><span class="model__id">Model 05</span></div>
+        <div class="model__bar"><span class="model__name">Elli</span><span class="model__id">Model 5</span></div>
         <dl class="model__meta">
           <div><dt>Age</dt><dd>26</dd></div>
           <div><dt>Height</dt><dd>183 cm</dd></div>
@@ -965,7 +1324,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <img class="gx" src="Roslanda/Ros4.jpg" alt="Roslanda" loading="lazy" hidden>
           <span class="model__count">1 / 4</span>
         </div>
-        <div class="model__bar"><span class="model__name">Roslanda</span><span class="model__id">Model 06</span></div>
+        <div class="model__bar"><span class="model__name">Roslanda</span><span class="model__id">Model 6</span></div>
         <dl class="model__meta">
           <div><dt>Age</dt><dd>22</dd></div>
           <div><dt>Height</dt><dd>179 cm</dd></div>
@@ -981,7 +1340,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <img class="gx" src="Sv4.jpg" alt="Svan" loading="lazy" hidden>
           <span class="model__count">1 / 4</span>
         </div>
-        <div class="model__bar"><span class="model__name">Svan</span><span class="model__id">Model 07</span></div>
+        <div class="model__bar"><span class="model__name">Svan</span><span class="model__id">Model 7</span></div>
         <dl class="model__meta">
           <div><dt>Age</dt><dd>28</dd></div>
           <div><dt>Height</dt><dd>190 cm</dd></div>
@@ -1013,105 +1372,6 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <div><dt>Use</dt><dd>Unlimited</dd></div>
         </dl>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ HOW IT WORKS ============================ -->
-<section class="section" id="process">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">How it works</span>
-      <h2>Four steps from brief to campaign.</h2>
-    </div>
-    <div class="steps">
-      <div class="step reveal">
-        <span class="step__no">I</span>
-        <h3>Brief &amp; direction</h3>
-        <p>We define the world — references, mood, products, and the visual language for your campaign.</p>
-      </div>
-      <div class="step reveal" data-delay="1">
-        <span class="step__no">II</span>
-        <h3>Model &amp; concept</h3>
-        <p>Choose an existing face or commission a custom model, then lock the concept and shot list.</p>
-      </div>
-      <div class="step reveal" data-delay="2">
-        <span class="step__no">III</span>
-        <h3>Generation &amp; art direction</h3>
-        <p>We generate and direct frame by frame — light, set, styling and product fidelity, refined to editorial standard.</p>
-      </div>
-      <div class="step reveal" data-delay="3">
-        <span class="step__no">IV</span>
-        <h3>Delivery</h3>
-        <p>Final stills and motion delivered in your formats, with full usage rights — ready to publish.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ SERVICES ============================ -->
-<section class="section section--bone" id="services">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Our services</span>
-      <h2>Everything the brand needs.</h2>
-    </div>
-    <div class="svc-grid">
-
-      <div class="svc reveal">
-        <div class="svc__img"><img src="Serv/Digital%20Photography.jpg" alt="Digital Photography" loading="lazy"></div>
-        <div class="svc__text">
-
-          <h3>Digital Photography</h3>
-          <p>Editorial, lookbook and product imagery — studio-quality stills without a studio.</p>
-        </div>
-      </div>
-
-      <div class="svc svc--rev reveal">
-        <div class="svc__img"><img src="Serv/AI%20Video.jpg" alt="Motion &amp; Film" loading="lazy"></div>
-        <div class="svc__text">
-
-          <h3>Motion &amp; Film</h3>
-          <p>Motion campaigns, film and social-first reels — generated and creatively directed.</p>
-        </div>
-      </div>
-
-      <div class="svc reveal">
-        <div class="svc__img"><img src="Serv/Social%20Content.jpg" alt="Social Content" loading="lazy" style="object-position:center 20%"></div>
-        <div class="svc__text">
-
-          <h3>Social Content</h3>
-          <p>Reels, stories and feed content — visuals that earn the pause, built for every platform.</p>
-        </div>
-      </div>
-
-      <div class="svc svc--rev reveal">
-        <div class="svc__img"><img src="Serv/Brand%20campaigns.jpg" alt="Brand Campaigns" loading="lazy"></div>
-        <div class="svc__text">
-
-          <h3>Brand Campaigns</h3>
-          <p>End-to-end creative direction — concept, casting, world-building and rollout across channels.</p>
-        </div>
-      </div>
-
-      <div class="svc reveal">
-        <div class="svc__img"><img src="Serv/Key%20Visual.jpg" alt="Key Visuals" loading="lazy"></div>
-        <div class="svc__text">
-
-          <h3>Key Visuals</h3>
-          <p>Hero imagery for launches and collections — the single frame a season is built on.</p>
-        </div>
-      </div>
-
-      <div class="svc svc--rev reveal">
-        <div class="svc__img"><img src="Serv/Worlds%20%26%20Sets%20.jpg" alt="Worlds and Sets" loading="lazy"></div>
-        <div class="svc__text">
-
-          <h3>Worlds &amp; Sets</h3>
-          <p>Locations, sets and atmospheres designed to brief — any place, any era, any light.</p>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1149,7 +1409,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <span class="work-card__no">Case II</span>
           <h3 style="margin-bottom:8px">Lotteria</h3>
           <p style="font-family:var(--ff-display);font-weight:300;font-size:15px;color:var(--muted-dark);line-height:1.2;margin:0 0 16px">Fast Food, Haute Couture.</p>
-          <div class="work-card__tags"><span>Brand Campaign</span><span>Food Campaign</span><span>Editorial Photography</span><span>Editorial</span><span>Video</span></div>
+          <div class="work-card__tags"><span>Brand Campaign</span><span>Food Campaign</span><span>Editorial Photography</span><span>Video</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
       </article>
@@ -1163,7 +1423,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <span class="work-card__no">Case III</span>
           <h3 style="margin-bottom:8px">The World Is Your Studio</h3>
           <p style="font-family:var(--ff-display);font-weight:300;font-size:15px;color:var(--muted-dark);line-height:1.2;margin:0 0 16px">Five Models. Six Locations. No Flights, No Crew, No Studio.</p>
-          <div class="work-card__tags"><span>Editorial Photography</span><span>Editorial</span><span>Fashion</span><span>Lookbook</span></div>
+          <div class="work-card__tags"><span>Editorial Photography</span><span>Fashion</span><span>Lookbook</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
       </article>
@@ -1205,7 +1465,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
           <span class="work-card__no">Case VI</span>
           <h3 style="margin-bottom:8px">Adora Swim</h3>
           <p style="font-family:var(--ff-display);font-weight:300;font-size:15px;color:var(--muted-dark);line-height:1.2;margin:0 0 16px">Old Walls, New Story.</p>
-          <div class="work-card__tags"><span>Swimwear Campaign</span><span>Editorial Photography</span><span>Editorial</span><span>Video</span></div>
+          <div class="work-card__tags"><span>Swimwear Campaign</span><span>Editorial Photography</span><span>Video</span></div>
           <span class="work-card__cta">View case &rarr;</span>
         </div>
       </article>
@@ -1310,7 +1570,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <span class="work-item__no">Case II</span>
         <h3 style="margin-bottom:12px">Lotteria</h3>
         <p style="font-family:var(--ff-display);font-weight:300;font-size:clamp(15px,1.3vw,17px);color:var(--muted-dark);line-height:1.35;margin:0 0 30px">Fast Food, Haute Couture.</p>
-        <div class="work-item__tags"><span>Brand Campaign</span><span>Food Campaign</span><span>Editorial Photography</span><span>Editorial</span><span>OOH</span><span>Video</span></div>
+        <div class="work-item__tags"><span>Brand Campaign</span><span>Food Campaign</span><span>Editorial Photography</span><span>OOH</span><span>Video</span></div>
         <p>Spec campaign for Lotteria — the iconic Korean fast food chain reimagined through a high fashion lens. One model, one restaurant, one story: from the first bite to the city streets. Full AI production — editorial photography, dynamic product visuals, OOH placements, and campaign video. Every image generated, directed, and post-produced in-house.</p>
       </div>
     </div>
@@ -1369,7 +1629,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <span class="work-item__no">Case III</span>
         <h3 style="margin-bottom:12px">The World Is Your Studio</h3>
         <p style="font-family:var(--ff-display);font-weight:300;font-size:clamp(15px,1.3vw,17px);color:var(--muted-dark);line-height:1.35;margin:0 0 30px">Five Models. Six Locations. No Flights, No Crew, No Studio.</p>
-        <div class="work-item__tags"><span>Editorial Photography</span><span>Editorial</span><span>Fashion</span><span>Lookbook</span></div>
+        <div class="work-item__tags"><span>Editorial Photography</span><span>Fashion</span><span>Lookbook</span></div>
         <p>AI-generated fashion editorial. Five models, five looks — placed across six locations worldwide. No flights. No crew. No studio. Paris · Japan · Safari · Bora Bora · Greece · Area 51</p>
       </div>
     </div>
@@ -1524,7 +1784,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <span class="work-item__no">Case VI</span>
         <h3 style="margin-bottom:12px">Adora Swim</h3>
         <p style="font-family:var(--ff-display);font-weight:300;font-size:clamp(15px,1.3vw,17px);color:var(--muted-dark);line-height:1.35;margin:0 0 30px">Old Walls, New Story.</p>
-        <div class="work-item__tags"><span>Swimwear Campaign</span><span>Editorial Photography</span><span>Editorial</span><span>Video</span></div>
+        <div class="work-item__tags"><span>Swimwear Campaign</span><span>Editorial Photography</span><span>Video</span></div>
         <p>Spec campaign for Adora Swim — sculptural swimwear framed against Moroccan architecture. Zellige tilework, terracotta arches and the Agafay desert as a single continuous story: old walls, new story. Full AI production — editorial photography, campaign video, and post-production. Every frame generated, directed and finished in-house.</p>
       </div>
     </div>
@@ -1738,6 +1998,105 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
   </div>
 </div>
 
+<!-- ============================ SERVICES ============================ -->
+<section class="section section--light" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our services</span>
+      <h2>Everything the brand needs.</h2>
+    </div>
+    <div class="svc-grid">
+
+      <div class="svc reveal">
+        <div class="svc__img"><img src="Serv/Digital%20Photography.jpg" alt="Digital Photography" loading="lazy"></div>
+        <div class="svc__text">
+
+          <h3>Digital Photography</h3>
+          <p>Editorial, lookbook and product imagery — studio-quality stills without a studio.</p>
+        </div>
+      </div>
+
+      <div class="svc svc--rev reveal">
+        <div class="svc__img"><img src="Serv/AI%20Video.jpg" alt="Motion &amp; Film" loading="lazy"></div>
+        <div class="svc__text">
+
+          <h3>Motion &amp; Film</h3>
+          <p>Motion campaigns, film and social-first reels — generated and creatively directed.</p>
+        </div>
+      </div>
+
+      <div class="svc reveal">
+        <div class="svc__img"><img src="Serv/Social%20Content.jpg" alt="Social Content" loading="lazy" style="object-position:center 20%"></div>
+        <div class="svc__text">
+
+          <h3>Social Content</h3>
+          <p>Reels, stories and feed content — visuals that earn the pause, built for every platform.</p>
+        </div>
+      </div>
+
+      <div class="svc svc--rev reveal">
+        <div class="svc__img"><img src="Serv/Brand%20campaigns.jpg" alt="Brand Campaigns" loading="lazy"></div>
+        <div class="svc__text">
+
+          <h3>Brand Campaigns</h3>
+          <p>End-to-end creative direction — concept, casting, world-building and rollout across channels.</p>
+        </div>
+      </div>
+
+      <div class="svc reveal">
+        <div class="svc__img"><img src="Serv/Key%20Visual.jpg" alt="Key Visuals" loading="lazy"></div>
+        <div class="svc__text">
+
+          <h3>Key Visuals</h3>
+          <p>Hero imagery for launches and collections — the single frame a season is built on.</p>
+        </div>
+      </div>
+
+      <div class="svc svc--rev reveal">
+        <div class="svc__img"><img src="Serv/Worlds%20%26%20Sets%20.jpg" alt="Worlds and Sets" loading="lazy"></div>
+        <div class="svc__text">
+
+          <h3>Worlds &amp; Sets</h3>
+          <p>Locations, sets and atmospheres designed to brief — any place, any era, any light.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================ HOW IT WORKS ============================ -->
+<section class="section" id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>Four steps from brief to campaign.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step__no">I</span>
+        <h3>Brief &amp; direction</h3>
+        <p>We define the world — references, mood, products, and the visual language for your campaign.</p>
+      </div>
+      <div class="step reveal" data-delay="1">
+        <span class="step__no">II</span>
+        <h3>Model &amp; concept</h3>
+        <p>Choose an existing face or commission a custom model, then lock the concept and shot list.</p>
+      </div>
+      <div class="step reveal" data-delay="2">
+        <span class="step__no">III</span>
+        <h3>Generation &amp; art direction</h3>
+        <p>We generate and direct frame by frame — light, set, styling and product fidelity, refined to editorial standard.</p>
+      </div>
+      <div class="step reveal" data-delay="3">
+        <span class="step__no">IV</span>
+        <h3>Delivery</h3>
+        <p>Final stills and motion delivered in your formats, with full usage rights — ready to publish.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============================ CALCULATOR ============================ -->
 <section class="section calc" id="calculator">
   <div class="calc__box">
@@ -1821,8 +2180,27 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
   </div>
 </section>
 
+<!-- ============================ THE EYE BEHIND OoMuS ============================ -->
+<section class="section" id="eye-behind">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">About</span>
+      <h2>The Eye Behind OoMuS</h2>
+    </div>
+
+    <div class="eye-grid">
+      <div class="eye__photo reveal">
+        <img src="Me/Me1.jpg" alt="Veronica Mus — founder of OoMuS" loading="lazy">
+      </div>
+      <div class="eye__text reveal" data-delay="1">
+        <p>I'm Veronica Mus. I founded OoMuS after years in Milan's fashion world - first as a model, then managing talent for a modeling agency. I've seen both sides: in front of the lens, and behind the scenes deciding what makes a campaign work. That same instinct now drives every campaign OoMuS creates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============================ FAQ ============================ -->
-<section class="section" id="faq">
+<section class="section section--light" id="faq">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">FAQ</span>
@@ -1852,25 +2230,6 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
       <div class="faq">
         <button class="faq__q" aria-expanded="false"><h3>How do we start?</h3><span class="faq__ic"></span></button>
         <div class="faq__a"><div class="faq__a-inner"><p>Send us a short brief through the contact form below or message us on Instagram. We'll come back with a direction, scope and timeline.</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ THE EYE BEHIND OoMuS ============================ -->
-<section class="section" id="eye-behind">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">About</span>
-      <h2>The Eye Behind OoMuS</h2>
-    </div>
-
-    <div class="eye-grid">
-      <div class="eye__photo reveal">
-        <img src="Me/Me1.jpg" alt="Veronica Mus — founder of OoMuS" loading="lazy">
-      </div>
-      <div class="eye__text reveal" data-delay="1">
-        <p>I'm Veronica Mus. I founded OoMuS after years in Milan's fashion world - first as a model, then managing talent for a modeling agency. I've seen both sides: in front of the lens, and behind the scenes deciding what makes a campaign work. That same instinct now drives every campaign OoMuS creates.</p>
       </div>
     </div>
   </div>
@@ -1938,7 +2297,7 @@ body.menu-open .mobile-nav{opacity:1;visibility:visible;transform:none}
         <a href="https://instagram.com/oomus_creative.studio_" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.behance.net/oomuscreativ" target="_blank" rel="noopener">Behance</a>
         <a href="https://www.linkedin.com/in/veranika-malodziy-779748424" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="#contact">Start a project</a>
+        <a href="#contact">Contact</a>
       </div>
     </div>
     <div class="footer__bot">
@@ -2245,12 +2604,12 @@ function closeGuidePayment(){
 </script>
 
 <!-- ============================ COOKIE CONSENT ============================ -->
-<div class="cc" id="cookieConsent" role="dialog" aria-label="Cookie consent" aria-live="polite">
-  <div class="cc__in">
-    <p class="cc__t">We use analytics cookies to understand how this site is used. Nothing is shared with advertisers. See our <a href="files/privacy-policy.html">Privacy Policy</a>.</p>
-    <div class="cc__b">
-      <button type="button" class="cc__no" id="ccNo">Decline</button>
-      <button type="button" class="cc__yes" id="ccYes">Accept</button>
+<div class="cookie-bar" id="cookieConsent" role="dialog" aria-label="Cookie consent" aria-live="polite">
+  <div class="cookie-bar__in">
+    <p class="cookie-bar__t">We use analytics cookies to understand how this site is used. Nothing is shared with advertisers. See our <a href="files/privacy-policy.html">Privacy Policy</a>.</p>
+    <div class="cookie-bar__b">
+      <button type="button" class="cookie-bar__no" id="ccNo">Decline</button>
+      <button type="button" class="cookie-bar__yes" id="ccYes">Accept</button>
     </div>
   </div>
 </div>
