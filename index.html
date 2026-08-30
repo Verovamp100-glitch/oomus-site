@@ -1107,24 +1107,37 @@ p,.lead{text-wrap:pretty}
 /* и внутри открытого кейса */
 .work-item__tags{margin-top:0!important;margin-bottom:26px!important}
 
-/* кастомный курсор: точка + кольцо, "VIEW PROJECT" на карточках кейсов */
+/* кастомный курсор: точка + кольцо, кольцо само инвертируется на любом фоне (mix-blend-mode) */
 body{cursor:none}
 .cursor{position:fixed;top:0;left:0;width:9px;height:9px;border-radius:50%;
   background:var(--champagne);pointer-events:none;z-index:9999;
   transform:translate(-50%,-50%);transition:width .3s,height .3s}
-.cursor-ring{position:fixed;top:0;left:0;width:38px;height:38px;
-  border:1px solid rgba(201,168,118,.5);border-radius:50%;pointer-events:none;
-  z-index:9998;transform:translate(-50%,-50%);
-  transition:width .35s,height .35s,border-color .35s,background .35s}
 .cursor.hover{width:0;height:0}
-.cursor-ring.hover{width:100px;height:100px;
-  border-color:rgba(11,11,12,.7);background:rgba(11,11,12,.05)}
-.cursor-ring .cl{position:absolute;inset:0;display:flex;align-items:center;
-  justify-content:center;font-family:monospace;font-size:9px;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--champagne);
-  opacity:0;transition:opacity .3s}
-.cursor-ring.hover .cl{opacity:1}
-@media(hover:none),(pointer:coarse),(prefers-reduced-motion:reduce){body{cursor:auto}.cursor,.cursor-ring{display:none}}
+.cursor-ring{position:fixed;top:0;left:0;width:34px;height:34px;
+  border:1.5px solid #fff;border-radius:50%;pointer-events:none;
+  z-index:9998;transform:translate(-50%,-50%);
+  mix-blend-mode:difference;
+  transition:width .35s var(--ease),height .35s var(--ease),border-width .35s}
+.cursor-ring.hover{width:100px;height:100px}
+.cursor-label{position:fixed;top:0;left:0;width:100px;height:100px;pointer-events:none;
+  z-index:10000;transform:translate(-50%,-50%);display:flex;align-items:center;
+  justify-content:center;opacity:0;transition:opacity .35s}
+.cursor-label.hover{opacity:1}
+.cursor-label .cl{font-family:monospace;font-size:9px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--champagne)}
+/* убираем "руку"-указатель браузера на всех кликабельных элементах, пока активен кастомный курсор */
+html.has-custom-cursor button,
+html.has-custom-cursor a,
+html.has-custom-cursor .work-card,
+html.has-custom-cursor .model.has-gallery,
+html.has-custom-cursor .case-overlay__close,
+html.has-custom-cursor .calc__btn,
+html.has-custom-cursor .calc__cta-btn,
+html.has-custom-cursor .calc__reset,
+html.has-custom-cursor .guide-card__btn,
+html.has-custom-cursor .guide-overlay__close,
+html.has-custom-cursor .cookie-bar button{cursor:none!important}
+@media(hover:none),(pointer:coarse),(prefers-reduced-motion:reduce){body{cursor:auto}.cursor,.cursor-ring,.cursor-label{display:none}}
 </style>
 </head>
 <body>
@@ -2654,13 +2667,18 @@ function closeGuidePayment(){
 </script>
 <!-- ============================ CUSTOM CURSOR ============================ -->
 <div class="cursor"></div>
-<div class="cursor-ring"><span class="cl">View Project</span></div>
+<div class="cursor-ring"></div>
+<div class="cursor-label"><span class="cl">View Project</span></div>
 <script>
-/* кастомный курсор: точка + кольцо, только для мыши/трекпада */
+/* кастомный курсор: точка + кольцо + отдельный слой подписи (чтобы золотой цвет не инвертировался) */
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
   if(!matchMedia('(pointer:fine)').matches || reduce) return;
-  var cur=document.querySelector('.cursor'), ring=document.querySelector('.cursor-ring');
+  document.documentElement.classList.add('has-custom-cursor');
+  var cur=document.querySelector('.cursor'),
+      ring=document.querySelector('.cursor-ring'),
+      lab=document.querySelector('.cursor-label'),
+      labText=lab.querySelector('.cl');
   var mx=innerWidth/2, my=innerHeight/2, rx=mx, ry=my;
   addEventListener('mousemove',function(e){
     mx=e.clientX; my=e.clientY;
@@ -2669,20 +2687,25 @@ function closeGuidePayment(){
   (function loop(){
     rx+=(mx-rx)*.16; ry+=(my-ry)*.16;
     ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    lab.style.left=rx+'px'; lab.style.top=ry+'px';
     requestAnimationFrame(loop);
   })();
-  var ringLabel = ring.querySelector('.cl');
   document.querySelectorAll('.work-card, .model.has-gallery, a').forEach(function(el){
     var label = el.classList.contains('work-card') ? 'View Project'
               : el.classList.contains('model') ? 'View Model'
               : null;
     el.addEventListener('mouseenter',function(){
       cur.classList.add('hover');
-      if(label){ ringLabel.textContent = label; ring.classList.add('hover'); }
+      if(label){
+        labText.textContent = label;
+        ring.classList.add('hover');
+        lab.classList.add('hover');
+      }
     });
     el.addEventListener('mouseleave',function(){
       cur.classList.remove('hover');
       ring.classList.remove('hover');
+      lab.classList.remove('hover');
     });
   });
 })();
