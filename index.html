@@ -913,20 +913,7 @@ p,.lead{text-wrap:pretty}
 .why:hover .why__no{color:#8A6A2F}
 .why:hover h3{color:#000}
 
-/* ============ CTA: один круг + тихая ссылка ============ */
-.btn.btn--solid{
-  width:clamp(118px,11.5vw,146px);height:clamp(118px,11.5vw,146px);
-  border-radius:50%!important;padding:0!important;
-  flex-direction:column;gap:4px;text-align:center;
-  font-weight:500;font-size:13px;letter-spacing:.01em;line-height:1.22;
-  color:#16140F;
-  background:radial-gradient(120% 160% at 30% -10%,var(--ivory-hi),var(--ivory) 55%,var(--ivory-lo));
-  box-shadow:inset 0 1px 1px rgba(255,255,255,.95),inset 0 -2px 3px rgba(140,118,72,.2),0 14px 30px rgba(11,11,12,.5);
-  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
-}
-.btn.btn--solid:hover{transform:translateY(-4px) scale(1.03);
-  box-shadow:inset 0 1px 1px rgba(255,255,255,.95),0 22px 44px rgba(11,11,12,.55)}
-.btn.btn--solid:active{transform:translateY(0) scale(.98)}
+/* ============ CTA: круглая hero-кнопка удалена; Send brief в форме — базовая pill-кнопка ============ */
 
 /* второстепенная — просто ссылка */
 .btn.btn--ghost{
@@ -1107,37 +1094,25 @@ p,.lead{text-wrap:pretty}
 /* и внутри открытого кейса */
 .work-item__tags{margin-top:0!important;margin-bottom:26px!important}
 
-/* кастомный курсор: точка + кольцо, кольцо само инвертируется на любом фоне (mix-blend-mode) */
-body{cursor:none}
-.cursor{position:fixed;top:0;left:0;width:9px;height:9px;border-radius:50%;
-  background:var(--champagne);pointer-events:none;z-index:9999;
-  transform:translate(-50%,-50%);transition:width .3s,height .3s}
-.cursor.hover{width:0;height:0}
-.cursor-ring{position:fixed;top:0;left:0;width:34px;height:34px;
-  border:1.5px solid #fff;border-radius:50%;pointer-events:none;
-  z-index:9998;transform:translate(-50%,-50%);
-  mix-blend-mode:difference;
-  transition:width .35s var(--ease),height .35s var(--ease),border-width .35s}
-.cursor-ring.hover{width:100px;height:100px}
-.cursor-label{position:fixed;top:0;left:0;width:100px;height:100px;pointer-events:none;
-  z-index:10000;transform:translate(-50%,-50%);display:flex;align-items:center;
-  justify-content:center;opacity:0;transition:opacity .35s}
-.cursor-label.hover{opacity:1}
-.cursor-label .cl{font-family:monospace;font-size:9px;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--champagne)}
-/* убираем "руку"-указатель браузера на всех кликабельных элементах, пока активен кастомный курсор */
-html.has-custom-cursor button,
-html.has-custom-cursor a,
-html.has-custom-cursor .work-card,
-html.has-custom-cursor .model.has-gallery,
-html.has-custom-cursor .case-overlay__close,
-html.has-custom-cursor .calc__btn,
-html.has-custom-cursor .calc__cta-btn,
-html.has-custom-cursor .calc__reset,
-html.has-custom-cursor .guide-card__btn,
-html.has-custom-cursor .guide-overlay__close,
-html.has-custom-cursor .cookie-bar button{cursor:none!important}
-@media(hover:none),(pointer:coarse),(prefers-reduced-motion:reduce){body{cursor:auto}.cursor,.cursor-ring,.cursor-label{display:none}}
+/* ============ SIDE-TAB: START A PROJECT (справа, по центру) ============ */
+.side-cta{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:900;
+  background:#141414;color:var(--cream);text-decoration:none;
+  writing-mode:vertical-rl;text-orientation:mixed;
+  padding:22px 12px;font-family:var(--f-ui);font-weight:500;font-size:11px;
+  letter-spacing:.32em;text-transform:uppercase;
+  border-radius:6px 0 0 6px;
+  box-shadow:0 6px 22px rgba(0,0,0,.35);
+  transition:padding-right .35s var(--ease),background .3s var(--ease),transform .35s var(--ease)}
+.side-cta:hover{padding-right:18px;background:#1F1F1F}
+.side-cta:active{transform:translateY(-50%) scale(.98)}
+@media (max-width:768px){
+  .side-cta{writing-mode:horizontal-tb;text-orientation:initial;
+    top:auto;bottom:78px;right:14px;transform:none;
+    padding:10px 16px;border-radius:999px;font-size:10px;letter-spacing:.22em;
+    box-shadow:0 8px 20px rgba(0,0,0,.4)}
+  .side-cta:hover{padding-right:16px}
+  .side-cta:active{transform:scale(.97)}
+}
 </style>
 </head>
 <body>
@@ -1207,7 +1182,6 @@ html.has-custom-cursor .cookie-bar button{cursor:none!important}
     <div class="hero__sub">
       <p class="reveal in" data-delay="1">OoMuS creates ultra-realistic photography, films and visual campaigns for fashion, beauty &amp; modern brands — editorial quality without traditional production.</p>
       <div class="hero__cta reveal in" data-delay="2">
-        <a href="#contact" class="btn btn--solid">Start a project <span class="arw">→</span></a>
         <a href="#work" class="btn btn--ghost">View work</a>
       </div>
     </div>
@@ -2665,50 +2639,7 @@ function closeGuidePayment(){
   document.getElementById('ccNo').addEventListener('click',function(){close('denied')});
 })();
 </script>
-<!-- ============================ CUSTOM CURSOR ============================ -->
-<div class="cursor"></div>
-<div class="cursor-ring"></div>
-<div class="cursor-label"><span class="cl">View Project</span></div>
-<script>
-/* кастомный курсор: точка + кольцо + отдельный слой подписи (чтобы золотой цвет не инвертировался) */
-(function(){
-  var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
-  if(!matchMedia('(pointer:fine)').matches || reduce) return;
-  document.documentElement.classList.add('has-custom-cursor');
-  var cur=document.querySelector('.cursor'),
-      ring=document.querySelector('.cursor-ring'),
-      lab=document.querySelector('.cursor-label'),
-      labText=lab.querySelector('.cl');
-  var mx=innerWidth/2, my=innerHeight/2, rx=mx, ry=my;
-  addEventListener('mousemove',function(e){
-    mx=e.clientX; my=e.clientY;
-    cur.style.left=mx+'px'; cur.style.top=my+'px';
-  });
-  (function loop(){
-    rx+=(mx-rx)*.16; ry+=(my-ry)*.16;
-    ring.style.left=rx+'px'; ring.style.top=ry+'px';
-    lab.style.left=rx+'px'; lab.style.top=ry+'px';
-    requestAnimationFrame(loop);
-  })();
-  document.querySelectorAll('.work-card, .model.has-gallery, a').forEach(function(el){
-    var label = el.classList.contains('work-card') ? 'View Project'
-              : el.classList.contains('model') ? 'View Model'
-              : null;
-    el.addEventListener('mouseenter',function(){
-      cur.classList.add('hover');
-      if(label){
-        labText.textContent = label;
-        ring.classList.add('hover');
-        lab.classList.add('hover');
-      }
-    });
-    el.addEventListener('mouseleave',function(){
-      cur.classList.remove('hover');
-      ring.classList.remove('hover');
-      lab.classList.remove('hover');
-    });
-  });
-})();
-</script>
+<!-- ============================ SIDE-TAB CTA (справа) ============================ -->
+<a href="#contact" class="side-cta" aria-label="Start a project">Start a Project</a>
 </body>
 </html>
