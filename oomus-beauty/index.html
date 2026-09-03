@@ -216,7 +216,7 @@ body.lb-open{overflow:hidden}
 <!-- HERO -->
 <header class="hero">
   <div class="hero-img">
-    <video autoplay muted loop playsinline poster="assets/img/hero-poster.jpg">
+    <video id="heroVid" autoplay muted loop playsinline webkit-playsinline preload="auto">
       <source src="assets/video/hero.mp4" type="video/mp4">
     </video>
   </div>
@@ -316,6 +316,26 @@ body.lb-open{overflow:hidden}
 <script>
 document.documentElement.style.scrollBehavior='auto';
 const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* HERO VIDEO — force play on mobile / in-app browsers where autoplay is blocked */
+(function(){
+  const v = document.getElementById('heroVid');
+  if(!v) return;
+  v.muted = true;
+  v.setAttribute('muted','');
+  v.playsInline = true;
+  const tryPlay = () => {
+    const p = v.play();
+    if(p && p.catch) p.catch(()=>{});
+  };
+  tryPlay();
+  v.addEventListener('loadedmetadata', tryPlay);
+  v.addEventListener('canplay', tryPlay);
+  document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) tryPlay(); });
+  const onFirstTouch = () => { tryPlay(); document.removeEventListener('touchstart', onFirstTouch); document.removeEventListener('click', onFirstTouch); };
+  document.addEventListener('touchstart', onFirstTouch, {passive:true});
+  document.addEventListener('click', onFirstTouch);
+})();
 
 /* CURSOR */
 const cur=document.querySelector('.cursor'), ring=document.querySelector('.cursor-ring');
